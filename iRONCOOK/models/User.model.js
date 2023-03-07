@@ -28,3 +28,5 @@ const userSchema = new Schema(
 );
 
 module.exports = model("User", userSchema);
+
+//ironhack, ironhack@ironhack.com, 1Ironhack

@@ -36,7 +36,7 @@ router.post("/signup", (req, res, next) => {
         return User.create({
             username,
             email,
-            passwordHash: hashedPassword
+            hashedPassword: hashedPassword
         });
     })
     .then((userFromDB) => {
@@ -57,7 +57,7 @@ router.post("/signup", (req, res, next) => {
 
 
 ///// login /////
-
+router.get("/login", (req, res) => res.render("auth/login", /* { layout: 'login-layout.hbs' } */));
 
 
 
