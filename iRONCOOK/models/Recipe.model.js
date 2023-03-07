@@ -1,25 +1,28 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
-const userSchema = new Schema(
+const recipeSchema = new Schema(
   {
-    username: {
-      type: String,
-      trim: true,
-      required: true,
-      unique: true
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true
-    },
-    hashedPassword: {
+    title: {
       type: String,
       required: true
-    }
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    /* ingredients: [
+      {
+        type: String,
+        required: true
+      }
+    ], */
+    // image
+    // label(time, category, cuisine, difficulty)
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
