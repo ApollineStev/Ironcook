@@ -41,8 +41,7 @@ router.post("/signup", (req, res, next) => {
           });
     })
     .then((userFromDB) => {
-        console.log(userFromDB)
-        //res.redirect("/userProfile");
+         res.redirect("/userProfile");
     })
     .catch((error) => {
         next(error)
@@ -60,11 +59,11 @@ router.post("/signup", (req, res, next) => {
 
 
 ///// login /////
-
+router.get('/login', (req, res, next) => res.render('auth/login'))
 
 
 ////// user profile ///////
 
-router.get('/userProfile', (req, res) => res.render('users/user-profile'))
+router.get('/userProfile', (req, res) => res.render('auth/user-profile'))
 
 module.exports = router;
