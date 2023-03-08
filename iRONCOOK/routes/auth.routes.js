@@ -30,20 +30,23 @@ router.post("/signup", (req, res, next) => {
         return;
     }
 
-    bcryptjs.genSalt(saltRounds)
-    .then((salt) => bcryptjs.hash(password, salt))
-    .then((hashedPassword) => {
-        return User.create({
-            username,
-            email,
-            passwordHash: hashedPassword
-        });
+    bcryptjs
+      .genSalt(saltRounds)
+      .then((salt) => bcryptjs.hash(password, salt))
+      .then(hashedPassword => {
+          return User.create({
+              username,
+              email,
+              passwordHash: hashedPassword
+          });
     })
     .then((userFromDB) => {
-        res.redirect("/");
+        console.log(userFromDB)
+        //res.redirect("/userProfile");
     })
     .catch((error) => {
-        if (error instanceof mongoose.Error.ValidationError) {
+        next(error)
+       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("auth/signup", { errorMessage: error.message });
         } else if (error.code === 11000) {
         res.status(500).render("auth/signup", {
@@ -51,7 +54,7 @@ router.post("/signup", (req, res, next) => {
         });
         } else {
         next(error);
-        }   
+        }  
     });
 });
 
@@ -60,6 +63,8 @@ router.post("/signup", (req, res, next) => {
 
 
 
+////// user profile ///////
 
+router.get('/userProfile', (req, res) => res.render('users/user-profile'))
 
 module.exports = router;
