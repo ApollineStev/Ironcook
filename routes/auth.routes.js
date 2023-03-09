@@ -41,7 +41,7 @@ router.post("/signup", (req, res, next) => {
           });
     })
     .then((userFromDB) => {
-      res.redirect("/", { layout: 'to-login-layout.hbs' });
+      res.render("user/user-profile", { layout: 'to-login-layout.hbs' });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -76,9 +76,9 @@ router.post('/login', (req, res, next) => {
         if (!user) {
           res.render('auth/login', { layout: 'to-login-layout.hbs' }, { errorMessage: 'Username is not registered. Try with other email.' });
           return;
-        } else if (bcryptjs.compareSync(password, user. passwordHash)) {
+        } else if (bcryptjs.compareSync(password, user.passwordHash)) {
             req.session.currentUser = user;
-            res.redirect("/", { layout: 'to-logout-layout.hbs' })
+            res.render("user/user-profile", { user }, { layout: 'to-logout-layout.hbs' })
         } else {
           res.render('auth/login', { layout: 'to-login-layout.hbs' }, { errorMessage: 'Incorrect password.' });
         }
@@ -88,7 +88,7 @@ router.post('/login', (req, res, next) => {
 
 ////// user profile ///////
 
-router.get('/userProfile', (req, res) => res.render('auth/user-profile', { layout: 'to-logout-layout.hbs' }))
+router.get('/userProfile', (req, res) => res.render('user/user-profile', { layout: 'to-logout-layout.hbs' }))
 
 
 /////////// log out ///////////
