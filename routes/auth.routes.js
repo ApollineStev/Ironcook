@@ -37,7 +37,7 @@ router.post("/signup", (req, res, next) => {
           return User.create({
               username,
               email,
-              hashedPassword: hashedPassword
+              passwordHash: hashedPassword
           });
     })
     .then((userFromDB) => {
@@ -76,9 +76,9 @@ router.post('/login', (req, res, next) => {
         if (!user) {
           res.render('auth/login', { errorMessage: 'Username is not registered. Try with other email.' });
           return;
-        } else if (bcryptjs.compareSync(password, user.hashedPassword)) {
+        } else if (bcryptjs.compareSync(password, user. passwordHash)) {
             req.session.currentUser = user;
-            res.redirect("/userProfile")
+            res.redirect("/")
         } else {
           res.render('auth/login', { errorMessage: 'Incorrect password.' });
         }
