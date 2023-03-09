@@ -33,18 +33,22 @@
                     </label>
                 </div>
 
+                  {{#if errorMessage}}
+                    <div class="alert alert-danger d-flex justify-content-center" role="alert">
+                      {{errorMessage}}
+                    </div>
+                  {{/if}}
+
                 <div class="d-flex justify-content-center">
                   <button type="submit"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-white">Register</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login"
                     class="fw-bold text-body"><u>Login here</u></a></p>
     {{!-- error message will be added here --}}
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
+
               </form>
 
             </div>
