@@ -41,7 +41,7 @@ router.post("/signup", (req, res, next) => {
           });
     })
     .then((userFromDB) => {
-      res.render("user/user-profile", { layout: 'to-login-layout.hbs' });
+      res.render("user/user-profile", { layout: 'to-logout-layout.hbs' });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
