@@ -37,11 +37,11 @@ router.post("/signup", (req, res, next) => {
           return User.create({
               username,
               email,
-              hashedPassword: hashedPassword
+              passwordHash: hashedPassword
           });
     })
     .then((userFromDB) => {
-      res.redirect("/");
+      res.render("user/user-profile");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -58,7 +58,7 @@ router.post("/signup", (req, res, next) => {
 
 
 ///// login /////
-router.get('/login', (req, res, next) => res.render('auth/login', /* { layout: 'login-layout.hbs' } */))
+router.get('/login', (req, res, next) => res.render('auth/login'/*,  { layout: 'login-layout.hbs' } */))
 
 router.post('/login', (req, res, next) => {
     console.log('SESSION =====> ', req.session);
@@ -76,9 +76,9 @@ router.post('/login', (req, res, next) => {
         if (!user) {
           res.render('auth/login', { errorMessage: 'Username is not registered. Try with other email.' });
           return;
-        } else if (bcryptjs.compareSync(password, user.hashedPassword)) {
+        } else if (bcryptjs.compareSync(password, user.passwordHash)) {
             req.session.currentUser = user;
-            res.redirect("/userProfile")
+            res.render("user/user-profile", { user })
         } else {
           res.render('auth/login', { errorMessage: 'Incorrect password.' });
         }
@@ -88,7 +88,7 @@ router.post('/login', (req, res, next) => {
 
 ////// user profile ///////
 
-router.get('/userProfile', (req, res) => res.render('auth/user-profile'))
+router.get('/userProfile', (req, res) => res.render('user/user-profile'))
 
 
 /////////// log out ///////////
