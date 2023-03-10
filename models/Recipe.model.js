@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const recipeSchema = new Schema(
   {
     user: {
@@ -9,23 +8,54 @@ const recipeSchema = new Schema(
     },
     title: {
       type: String,
-      required: true
+      required: true,
+      unique: true
     },
     description: {
       type: String,
       required: true
     },
-    /* ingredients: [
-      {
-        type: String,
-        required: true
-      }
-    ], */
-    // image
-    // label(time, category, cuisine, difficulty)
+    ingredients: {
+      type: [String],
+      required: true
+    },
+    cuisine: {
+      type: String,
+      required: true,
+    },
+    dishType: {
+      type: String,
+      enum: ["breakfast", "starter", "soup", "tapas", "main", "dessert", "other"]
+    },
+    image: {
+      type: String,
+      default: "https://images.media-allrecipes.com/images/75131.jpg"
+    },
+    timeToPrepare: {
+      type: Number,
+      validate: {
+        validator: (value) => {
+          if (value >= 0)
+          {
+            return true
+          }
+          else
+          {
+            return false
+          }
+        }
+      },
+    },
+    difficulty: {
+      type: String,
+      enum: ["easy", "intermediate", "professional"]
+    },
+    date: {
+      type: Date,
+      default: Date.now
+    }
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true
   }
 );

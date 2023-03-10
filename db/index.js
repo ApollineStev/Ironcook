@@ -16,8 +16,14 @@ const users = [
 const recipes = [
   { // user: "", <- later needs populate
     title: "French toast", 
-    description:" ", 
-    // ingredients, image, label
+    description:"French toast", 
+    ingredients: "pan",
+    cuisine: "french",
+    dishType: "breakfast",
+    image: "https://images.media-allrecipes.com/images/75131.jpg",
+    timeToPrepare: 10,
+    difficulty: "easy",
+    date: "2023-03-10" 
   },
 ]
 
