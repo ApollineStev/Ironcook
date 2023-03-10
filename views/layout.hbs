@@ -37,11 +37,22 @@
                   <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
                </form>
 
-               {{!-- <div class="text-end">
+               <!--<div class="text-end">
                   <button type="button" class="btn btn-outline-light me-2"><a href="/login" class="text-decoration-none text-white">Login</a></button>
-                  <button id="logout-form" type="button" class="btn btn-outline-light me-2"><a href="/logout" class="text-decoration-none text-white">Logout</a></button>
+                  
                   <button type="button" class="btn btn-warning"><a href="/signup" class="text-decoration-none text-success">Sign-up</a></button>
-               </div> --}}
+               </div>-->
+
+               {{#if userInSession}}
+                  <form action="/logout" method="POST">
+                     <button type="button" class="btn btn-outline-light me-2"><a href="/" class="text-decoration-none text-white">Logout</a></button>
+                  </form>
+                  <button type="button" class="btn btn-warning"><a href="/userProfile" class="text-decoration-none text-success">Profile</a></button>
+                  
+               {{else}}
+                  <button type="button" class="btn btn-outline-light me-2"><a href="/login" class="text-decoration-none text-white">Login</a></button>
+                  <button type="button" class="btn btn-warning"><a href="/signup" class="text-decoration-none text-success">Sign-up</a></button>
+               {{/if}}
             </div>
          </div>
       </header>
