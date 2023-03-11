@@ -1,14 +1,92 @@
 {{!-- views/users/user-profile.hbs --}}
 <section>
 
-    {{#if userInSession}}
-      <h2>Welcome, {{ userInSession.username }}!</h2>
-      <p>This is your profile page my friend!</p>
-      <button>
-        <a href="/userProfile">Reload the page</a>
-      </button>
-    {{else}}
-      <p>Still no logged in user, sorry!</p>
-    {{/if}}
+  {{#if userInSession}}
+
+    <div class="album py-5 bg-light">
+
+      <div class="row">
+        <h2 class="text-center">Welcome, {{ userInSession.username }}!</h2>
+      </div>
+
+      <div class="mx-5">
+        <div class="row">
+          <h2> My Recipes </h2>
+          <a href="/recipes/create" class="btn btn-success"> Create a new recipe </a>
+          {{!-- button right side! --}}
+        </div>
+        <hr>
+      </div>
+
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card">
+              <img src="/images/kitchen-img.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Ingredients</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">cuisine</li>
+                  <li class="list-group-item">dish type</li>
+                  <li class="list-group-item">time to prepare</li>
+                  <li class="list-group-item">difficulty</li>
+              </ul>
+              <div class="card-body text-center">
+                  <a href="#" class="btn btn-success">Read more</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <img src="/images/kitchen-img.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Ingredients</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">cuisine</li>
+                <li class="list-group-item">dish type</li>
+                <li class="list-group-item">time to prepare</li>
+                <li class="list-group-item">difficulty</li>
+              </ul>
+              <div class="card-body text-center">
+                <a href="#" class="btn btn-success">Read more</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card">
+              <img src="/images/kitchen-img.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Ingredients</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">cuisine</li>
+                <li class="list-group-item">dish type</li>
+                <li class="list-group-item">time to prepare</li>
+                <li class="list-group-item">difficulty</li>
+              </ul>
+              <div class="card-body text-center">
+                <a href="#" class="btn btn-success">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  {{else}}
+    <p>Still no logged in user, sorry!</p>
+  {{/if}}
+    
+
+
+
 
 </section>
