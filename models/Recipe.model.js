@@ -27,9 +27,9 @@ const recipeSchema = new Schema(
       type: String,
       enum: ["breakfast", "starter", "soup", "tapas", "main", "dessert", "other"]
     },
-    image: {
+    difficulty: {
       type: String,
-      default: "https://images.media-allrecipes.com/images/75131.jpg"
+      enum: ["easy", "intermediate", "professional"]
     },
     timeToPrepare: {
       type: Number,
@@ -46,9 +46,9 @@ const recipeSchema = new Schema(
         }
       },
     },
-    difficulty: {
+    image: {
       type: String,
-      enum: ["easy", "intermediate", "professional"]
+      default: "https://images.media-allrecipes.com/images/75131.jpg"
     },
     date: {
       type: Date,
