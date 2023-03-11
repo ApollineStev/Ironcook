@@ -9,56 +9,67 @@
         <div>
             
             <form action="/recipe-create" method="post">
-                <label> Title:
-                    <input type="text" name="title" />
-                </label>
+                <div class="mx-5 mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" id="formGroupExampleInput">
+                </div>
 
-                <label> Description:
-                    <textarea name="description" cols="30" rows="4"> </textarea>
-                </label>
+                <div class="mx-5 mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Description</label>
+                    <textarea name="description" rows="10" class="form-control" id="formGroupExampleInput"> </textarea>
+                </div>
                 
-                <label> Ingredients:
-                    <input type="text" name="ingredients" />
-                    <!-- how to put ingredients in array -->
-                </label>
-                
-                <label> Cuisine:
-                    <input type="text" name="cuisine" />
-                </label>
+                <div class="mx-5 mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Ingredients</label>
+                    <input type="text" name="ingredients[0]" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients[1]" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients[2]" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients[3]" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients[4]" for="formGroupExampleInput" class="form-label">
+                    <!-- possible to add -->
+                </div>
 
-                <label> Dish type:
-                    <select name="dishType">
-                        <option value="breakfast">Breakfast</option>
-                        <option value="starter">Starter</option>
-                        <option value="soup">Soup</option>
-                        <option value="tapas">Tapas</option>
-                        <option value="main">Main</option>
-                        <option value="dessert">Dessert</option>
-                        <option value="other">Other</option>
-                    </select>
-                </label>
-                
-                <label> Difficulty:
-                    <select name="difficulty">
-                        <option value="easy">Easy</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="difficult">Difficult</option>
-                    </select>
-                </label>
+                <div class="mx-5 mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Cuisine
+                        <input type="text" name="cuisine" class="form-control" id="formGroupExampleInput">
+                    </label>
 
-                <label> Time to prepare(minute):
-                    <input type="number" name="rating" min="1" max="600" />
-                </label>
-
-                <label> Image upload
-                    <input type="file" name="imageUrl" />
-                </label>
-                
-                <label> Date (automatically!!!)
+                    <label for="formGroupExampleInput" class="form-label"> Dish type
+                        <select name="dishType" class="form-select form-select-sm" aria-label="Small select">
+                            <option selected="">Select dish type</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="starter">Starter</option>
+                            <option value="soup">Soup</option>
+                            <option value="tapas">Tapas</option>
+                            <option value="main">Main</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
                     
-                </label>
+                    <label for="formGroupExampleInput" class="form-label"> Difficulty
+                        <select name="difficulty" class="form-select form-select-sm" aria-label="Small select">
+                            <option selected="">Select difficulty</option>
+                            <option value="easy">Easy</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="difficult">Difficult</option>
+                        </select>
+                    </label>
+                    
+                    <label for="formGroupExampleInput" class="form-label"> Cooking time
+                        <input type="number" name="rating" min="1" max="600" placeholder="min" class="form-control" id="formGroupExampleInput">
+                    </label>
 
-                <button type="submit"> Create </button>
+                    <label for="formGroupExampleInput" class="form-label"> Image
+                        <input type="file" name="imageUrl" class="form-control" id="formGroupExampleInput">
+                    </label>
+
+                </div>
+
+                <div class=" m-auto justify-content-center">
+                    <button type="submit" class="btn btn-success"> Create </button>
+                </div>
+
             </form>
 
         </div>

@@ -3,7 +3,9 @@
 
   {{#if userInSession}}
 
-    {{userInSession.recipes}}
+    {{#with userInSession.recipes}}
+      {{this}}
+    {{/with}}
 
     <div class="album py-5 bg-light">
 
@@ -14,7 +16,7 @@
       <div class="mx-5">
         <div class="row">
           <h2 > <a href="/userRecipes"> My Recipes </a> </h2>
-          <a href="/recipes-create" class="btn btn-success"> Create a new recipe </a>
+          <a href="/recipe-create" class="btn btn-success"> Create a new recipe </a>
           {{!-- button right side! --}}
         </div>
         <hr>
@@ -32,7 +34,7 @@
               <ul class="list-group list-group-flush">
                   <li class="list-group-item">cuisine</li>
                   <li class="list-group-item">dish type</li>
-                  <li class="list-group-item">time to prepare</li>
+                  <li class="list-group-item">cooking time</li>
                   <li class="list-group-item">difficulty</li>
               </ul>
               <div class="card-body text-center">
@@ -41,43 +43,6 @@
             </div>
           </div>
 
-          <div class="col">
-            <div class="card">
-              <img src="/images/kitchen-img.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Ingredients</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">cuisine</li>
-                <li class="list-group-item">dish type</li>
-                <li class="list-group-item">time to prepare</li>
-                <li class="list-group-item">difficulty</li>
-              </ul>
-              <div class="card-body text-center">
-                <a href="#" class="btn btn-success">Read more</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card">
-              <img src="/images/kitchen-img.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Ingredients</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">cuisine</li>
-                <li class="list-group-item">dish type</li>
-                <li class="list-group-item">time to prepare</li>
-                <li class="list-group-item">difficulty</li>
-              </ul>
-              <div class="card-body text-center">
-                <a href="#" class="btn btn-success">Read more</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -87,8 +52,5 @@
     <p>Still no logged in user, sorry!</p>
   {{/if}}
     
-
-
-
 
 </section>

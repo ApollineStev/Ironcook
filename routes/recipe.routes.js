@@ -24,19 +24,15 @@ router.get('/recipes/search/results', (req, res) => {
 }); */
 
 // create a recipe
-router.get('/recipe-create', isLoggedIn, (req, res) => {
-    User.find()
-    .then((user) => {
-        res.render('recipes/create', { user })
-    })
-    .catch((err) => console.log(`Error while displaying page: ${err}`));
-});
+router.get('/recipe-create', isLoggedIn, (req, res) => res.render('recipes/create') );
 
 router.post('/recipe-create', (req, res, next) => {
+    
+    req.sesscion.currentUser._id = author
 
-    const { author, title, description, ingredients, cuisine, dishType, difficulty, timeToPrepare, imageUrl, date } = req.body;
+    const { title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body;
 
-    Recipe.create({ author, title, description, ingredients, cuisine, dishType, difficulty, timeToPrepare, imageUrl, date })
+    Recipe.create({ author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date })
     .then((recipe) => 
         {
             console.log(recipe)

@@ -31,7 +31,7 @@ const recipeSchema = new Schema(
       type: String,
       enum: ["easy", "intermediate", "professional"]
     },
-    timeToPrepare: {
+    cookingTime: {
       type: Number,
       validate: {
         validator: (value) => {

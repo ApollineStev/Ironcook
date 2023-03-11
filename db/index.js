@@ -21,7 +21,7 @@ const recipes = [
     cuisine: "french",
     dishType: "breakfast",
     imageUrl: "https://images.media-allrecipes.com/images/75131.jpg",
-    timeToPrepare: 10,
+    cookingTime: 10,
     difficulty: "easy",
     date: "2023-03-10" 
   },

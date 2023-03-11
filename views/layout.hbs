@@ -23,7 +23,7 @@
                   <li class="dropdown">
                      <a href="#" class="nav-link dropdown-toggle px-2 text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">Recipes</a></li>
                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Time</a></li>
+                        <li><a class="dropdown-item" href="#">Cooking Time</a></li>
                         <li><a class="dropdown-item" href="#">Category</a></li>
                         <li><a class="dropdown-item" href="#">Cuisine</a></li>
                         <li><a class="dropdown-item" href="#">Difficulty</a></li>
@@ -37,11 +37,6 @@
                   <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Search..." aria-label="Search">
                </form>
 
-               <!--<div class="text-end">
-                  <button type="button" class="btn btn-outline-light me-2"><a href="/login" class="text-decoration-none text-white">Login</a></button>
-                  
-                  <button type="button" class="btn btn-warning"><a href="/signup" class="text-decoration-none text-success">Sign-up</a></button>
-               </div>-->
 
                {{#if userInSession}}
                   <form action="/logout" method="POST">
