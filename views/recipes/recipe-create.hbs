@@ -6,7 +6,7 @@
             <hr>
         </div>
 
-        <form action="/recipe/create" method="post">
+        <form action="/recipes/create" method="post">
             <label> Title:
                 <input type="text" name="title" />
             </label>
@@ -25,12 +25,23 @@
             </label>
 
             <label> Dish type:
-                <input type="text" name="dishType" />
+                <select name="dishType" id="">
+                    <option value="breakfast">breakfast</option>
+                    <option value="starter">starter</option>
+                    <option value="soup">soup</option>
+                    <option value="tapas">tapas</option>
+                    <option value="main">main</option>
+                    <option value="dessert">dessert</option>
+                    <option value="other">other</option>
+                </select>
             </label>
             
             <label> Difficulty:
-                <input type="text" name="difficulty" />
-                <!-- select option : easy, intermediate, professional -->
+                <select name="difficulty" id="">
+                    <option value="easy">easy</option>
+                    <option value="intermediate">intermediate</option>
+                    <option value="professional">professional</option>
+                </select>
             </label>
 
             <label> Time to prepare:
