@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const recipeSchema = new Schema(
   {
-    user: {
+    author: {
       type: Schema.Types.ObjectId,
       ref: "User"
     },
@@ -46,7 +46,7 @@ const recipeSchema = new Schema(
         }
       },
     },
-    image: {
+    imageUrl: {
       type: String,
       default: "https://images.media-allrecipes.com/images/75131.jpg"
     },

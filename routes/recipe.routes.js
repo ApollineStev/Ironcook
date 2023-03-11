@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js')
 
 const Recipe = require("../models/Recipe.model");
-
+const User = require("../models/User.model");
 
 // search a recipe (button click =>)
 /* router.get('/recipes/search', (req, res) => res.render('recipes/recipe-search.hbs'));
@@ -24,20 +24,45 @@ router.get('/recipes/search/results', (req, res) => {
 }); */
 
 // create a recipe
-router.get('/recipes/create', isLoggedIn, (req, res) => res.render('recipes/recipe-create.hbs'));
+router.get('/recipe-create', isLoggedIn, (req, res) => {
+    User.find()
+    .then((user) => {
+        res.render('recipes/create', { user })
+    })
+    .catch((err) => console.log(`Error while displaying page: ${err}`));
+});
 
-router.post('/recipes/create', (req, res) => {
+router.post('/recipe-create', (req, res, next) => {
 
-    const { title, description, ingredients, cuisine, dishType, difficulty, timeToPrepare, image, date } = req.body;
+    const { author, title, description, ingredients, cuisine, dishType, difficulty, timeToPrepare, imageUrl, date } = req.body;
 
-    Recipe.create({ title, description, ingredients, cuisine, dishType, difficulty, timeToPrepare, image, date })
-    .then(() => res.redirect('/user-profile')) // how to render '/recipes/:recipeId'
+    Recipe.create({ author, title, description, ingredients, cuisine, dishType, difficulty, timeToPrepare, imageUrl, date })
+    .then((recipe) => 
+        {
+            console.log(recipe)
+            return User.findByIdAndUpdate(author,
+                { $push: { recipes: recipe._id } })
+        })
+    .then((recipe) => {
+        res.render(`recipes/${recipe._id}`, { recipe })
+    })
     .catch(error => next(error));
 
 });
 
 
+// show recipe detail
+router.get('/recipe/:recipeId', (req, res, next) => { 
 
+    const { recipeId } = req.params;
+
+    Recipe.findById(recipeId)
+    .populate('author')
+    .then(recipe => {
+        res.render('recipes/detail', { recipe: recipe });
+    })
+    .catch(error => next(error));
+})
 
 
 module.exports = router;

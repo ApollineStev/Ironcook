@@ -1,0 +1,67 @@
+<section>
+    <div class="album py-5 bg-light">
+
+        <div class="mx-5">
+            <h2> Create a recipe </h2>
+            <hr>
+        </div>
+
+        <div>
+            
+            <form action="/recipe-create" method="post">
+                <label> Title:
+                    <input type="text" name="title" />
+                </label>
+
+                <label> Description:
+                    <textarea name="description" cols="30" rows="4"> </textarea>
+                </label>
+                
+                <label> Ingredients:
+                    <input type="text" name="ingredients" />
+                    <!-- how to put ingredients in array -->
+                </label>
+                
+                <label> Cuisine:
+                    <input type="text" name="cuisine" />
+                </label>
+
+                <label> Dish type:
+                    <select name="dishType">
+                        <option value="breakfast">Breakfast</option>
+                        <option value="starter">Starter</option>
+                        <option value="soup">Soup</option>
+                        <option value="tapas">Tapas</option>
+                        <option value="main">Main</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="other">Other</option>
+                    </select>
+                </label>
+                
+                <label> Difficulty:
+                    <select name="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="difficult">Difficult</option>
+                    </select>
+                </label>
+
+                <label> Time to prepare(minute):
+                    <input type="number" name="rating" min="1" max="600" />
+                </label>
+
+                <label> Image upload
+                    <input type="file" name="imageUrl" />
+                </label>
+                
+                <label> Date (automatically!!!)
+                    
+                </label>
+
+                <button type="submit"> Create </button>
+            </form>
+
+        </div>
+
+    </div>
+</section>

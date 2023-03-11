@@ -20,7 +20,7 @@ const recipes = [
     ingredients: "pan",
     cuisine: "french",
     dishType: "breakfast",
-    image: "https://images.media-allrecipes.com/images/75131.jpg",
+    imageUrl: "https://images.media-allrecipes.com/images/75131.jpg",
     timeToPrepare: 10,
     difficulty: "easy",
     date: "2023-03-10" 

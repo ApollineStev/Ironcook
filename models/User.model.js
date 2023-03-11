@@ -20,7 +20,8 @@ const userSchema = new Schema(
     passwordHash: {
       type: String,
       required: [true, "Password is required."]
-    }
+    },
+    recipes: [{ type: Schema.Types.ObjectId, ref: "Recipe" }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

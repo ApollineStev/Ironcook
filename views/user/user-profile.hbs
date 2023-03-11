@@ -3,6 +3,8 @@
 
   {{#if userInSession}}
 
+    {{userInSession.recipes}}
+
     <div class="album py-5 bg-light">
 
       <div class="row">
@@ -12,7 +14,7 @@
       <div class="mx-5">
         <div class="row">
           <h2> My Recipes </h2>
-          <a href="/recipes/create" class="btn btn-success"> Create a new recipe </a>
+          <a href="/recipe-create" class="btn btn-success"> Create a new recipe </a>
           {{!-- button right side! --}}
         </div>
         <hr>
