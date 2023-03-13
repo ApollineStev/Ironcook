@@ -1,0 +1,24 @@
+<h2>Recipes</h2>
+
+{{#each recipe}}
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card">
+                        <img src="{{imageUrl}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{title}}</h5>
+                            <p class="card-text">Ingredients</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cuisine : {{cuisine}}</li>
+                            <li class="list-group-item">Dish type : {{dishType}}</li>
+                            <li class="list-group-item">Cooking type : {{cookingTime}}</li>
+                            <li class="list-group-item">Difficulty : {{difficulty}}</li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <a href="/recipe/{{_id}}" class="btn btn-success">Read more</a>
+                        </div>
+                    </div>
+                </div>
+{{/each}}

@@ -29,7 +29,7 @@ const recipeSchema = new Schema(
     },
     difficulty: {
       type: String,
-      enum: ["easy", "intermediate", "professional"]
+      enum: ["easy", "intermediate", "difficult"]
     },
     cookingTime: {
       type: Number,

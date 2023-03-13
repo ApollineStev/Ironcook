@@ -39,7 +39,7 @@ mongoose
     const databaseName = x.connections[0].name;
     console.log(`Connected to Mongo! Database name: "${databaseName}"`);
 
-    User.create(users)
+    /*User.create(users)
       .then(data => {
 
         console.log(`${data.length} users inserted.`)
@@ -57,7 +57,7 @@ mongoose
 
       }).catch((err) => {
       console.error("Error creating products: ", err);
-      });
+      });*/
 
   })
   .catch((err) => {
