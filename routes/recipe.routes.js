@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const router = new Router();
 
+const axios = require('axios')
+
 const mongoose = require("mongoose");
 
 ////// middleware  //////
@@ -19,7 +21,29 @@ router.get('/recipes', isLoggedIn, (req, res, next) => {
     .catch(err => next(err))
 })
 
+////////////////// axios test////////////////////
 
+router.get('/random', (req, res, next) => {
+    const options = {
+        method: 'GET',
+        url: 'https://random-recipes.p.rapidapi.com/ai-quotes/1',
+        headers: {
+          'X-RapidAPI-Key': '3277c2f1d7msh7171818c2674ff8p12125bjsnaf08cc3db9f7',
+          'X-RapidAPI-Host': 'random-recipes.p.rapidapi.com'
+        }
+      };
+      
+      axios.request(options).then(function (response) {
+          console.log(response.data);
+      })
+      .then(response => {
+        console.log('hello')
+         return res.render('recipes/random', {response})
+      })
+      .catch(function (error) {
+          console.error(error);
+      });
+})
 
 
 
@@ -45,19 +69,13 @@ router.get('/recipe-create', isLoggedIn, (req, res) => {
 
 router.post('/recipe-create',isLoggedIn,  (req, res, next) => {
     
-   // req.session.currentUser._id = author
+    //req.session.currentUser = author
 
-    const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body;
+    const {author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body;
 
-    Recipe.create({title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date })
-    .then((recipe) => 
-        {
-            console.log(recipe)
-           /* return User.findByIdAndUpdate(author,
-                { $push: { recipes: recipe._id } })*/
-        })
+    Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date })
     .then((recipe) => {
-        res.render(`recipes/detail`, { recipe:recipe })
+        res.render(`recipes/detail`, { recipe })
     })
     .catch(error => next(error));
 
@@ -65,7 +83,7 @@ router.post('/recipe-create',isLoggedIn,  (req, res, next) => {
 
 
 // show recipe detail
-router.get('/recipe/:recipeId', (req, res, next) => { 
+router.get('/recipe/:recipeId', isLoggedIn, (req, res, next) => { 
 
     const { recipeId } = req.params;
 

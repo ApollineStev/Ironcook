@@ -1,11 +1,13 @@
 const { Schema, model } = require("mongoose");
 
+const User = require("../models/User.model");
+
 const recipeSchema = new Schema(
   {
-    author: {
+    author: [{
       type: Schema.Types.ObjectId,
-      ref: "User"
-    },
+      ref: User
+    }],
     title: {
       type: String,
       required: true,
@@ -46,7 +48,7 @@ const recipeSchema = new Schema(
         }
       },
     },
-    imageUrl: {
+    imageUrl:  {
       type: String,
       default: "https://images.media-allrecipes.com/images/75131.jpg"
     },

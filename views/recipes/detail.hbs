@@ -7,19 +7,29 @@
         </div>
 
         <div> 
-            <p>{{recipe.description}}</p>
-            <p>{{recipe.ingredients}}</p>
-            <p>{{recipe.cuisine}}</p>
-            <p>{{recipe.dishType}}</p>
-            <p>{{recipe.difficulty}}</p>
-            <p>{{recipe.cookingTime}}</p>
+            <p>Recipe by : {{recipe.author}}</p>
+            <p>Description : {{recipe.description}}</p>
+            <p>Ingredients : {{recipe.ingredients}}</p>
+            <p>Cuisine : {{recipe.cuisine}}</p>
+            <p>Dish type : {{recipe.dishType}}</p>
+            <p>Difficulty : {{recipe.difficulty}}</p>
+            <p>Cokking time : {{recipe.cookingTime}} min</p>
             <img src="{{recipe.imageUrl}}">
 
         </div>
 
         
+        {{#if userInSession}}
+            <div>
+                <a href="/products/{{id}}/edit">
+                    <button add product-id="{{id}}">Edit</button>
+                </a>
 
-        <div></div>
+                <a href="/recipe/{{id}}/delete">
+                    <button remove recipe-id="{{id}}">Remove</button>
+                </a>
+            </div>
+        {{/if}}
 
 
 
