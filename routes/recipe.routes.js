@@ -110,6 +110,27 @@ router.get('/recipe/:recipeId', isLoggedIn, (req, res, next) => {
 })
 
 //////////////    Edit recipe   /////////////////
+router.get('/recipe/:recipeId/edit' , isLoggedIn , (req, res, next) => {
+    const { recipeId } = req.params
+
+    Recipe.findById(recipeId).then(recipeToEdit => {
+        res.render('recipes/recipe-edit.hbs', {recipe: recipeToEdit})
+    })
+    .catch(err => next(err))
+})
+
+
+router.post('/recipe/:recipeId/edit', isLoggedIn, (req, res, next) => {
+    const { recipeId } =  req.params
+    const { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body
+
+    Recipe.findByIdAndUpdate(recipeId, { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date }, { new : true })
+    .then(updatedRecipe => {
+        res.redirect(`/recipe/${updatedRecipe.id}`)
+    })
+    .catch(err => next(err))
+})
+
 
 ////////////////////  Delete recipe //////////////////
 router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {

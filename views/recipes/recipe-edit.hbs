@@ -1,0 +1,74 @@
+<h1>Editing the recipe</h1>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<form action="POST" onsubmit="">
+    <div class="mx-5 mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" id="formGroupExampleInput" value="{{recipe.title}}">
+                </div>
+
+                <div class="mx-5 mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Description</label>
+                    <textarea name="description" rows="10" class="form-control" id="formGroupExampleInput">{{recipe.description}}</textarea>
+                </div>
+                
+                <div class="mx-5 mb-3"><!-- for each??? -->
+                    <label for="formGroupExampleInput" class="form-label">Ingredients</label>
+                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+                    <!-- possible to add -->
+                </div>
+
+                <div class="mx-5 mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Cuisine
+                        <input type="text" name="cuisine" class="form-control" id="formGroupExampleInput" value="{{recipe.cuisine}}">
+                    </label>
+
+                    <label for="formGroupExampleInput" class="form-label"> Dish type
+                        <select name="dishType" class="form-select form-select-sm" aria-label="Small select" value="{{recipe.dishType}}">
+                            <option selected="">Select dish type</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="starter">Starter</option>
+                            <option value="soup">Soup</option>
+                            <option value="tapas">Tapas</option>
+                            <option value="main">Main</option>
+                            <option value="dessert">Dessert</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+                    
+                    <label for="formGroupExampleInput" class="form-label"> Difficulty
+                        <select name="difficulty" class="form-select form-select-sm" aria-label="Small select">
+                            <option selected="">Select difficulty</option>
+                            <option value="easy">Easy</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="difficult">Difficult</option>
+                        </select>
+                    </label>
+                    
+                    <label for="formGroupExampleInput" class="form-label"> Cooking time
+                        <input type="number" name="cookingTime" min="1" max="600" placeholder="min" class="form-control" id="formGroupExampleInput">
+                    </label>
+
+                    <label for="formGroupExampleInput" class="form-label"> Image
+                        <input type="file" name="imageUrl" class="form-control" id="formGroupExampleInput" value="{{recipe.imageUrl}}">
+                    </label>
+
+                </div>
+
+                <div class=" m-auto justify-content-center">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <button > Create </button>
+                </div>
+                
+
+</form>
