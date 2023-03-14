@@ -63,18 +63,36 @@ router.get('/random', (req, res, next) => {
 
 
 // search a recipe (button click =>)
-/* router.get('/recipes/search', (req, res) => res.render('recipes/recipe-search.hbs'));
-
-router.get('/recipes/search/results', (req, res) => {
+router.get('/recipes-search', (req, res) => {
 
     const { wordToSearch } = req.query
 
-    Recipe.find({ title: { $regex: wordToSearch } })
-        .then(allRecipesFromDB => {
-            res.render("recipes/recipe-search-results", { recipes: allRecipesFromDB })
-        }).catch(err => console.log(err))
+    Recipe.find({ $and: [
+        {title: { $regex: wordToSearch }}, 
+        {description: { $regex: wordToSearch }},
+        {cuisine: { $regex: wordToSearch }}
+    ]})
+    .then(allRecipes => {
+        console.log(allRecipes)
+        res.render('recipes/search', {recipes: allRecipes})
+    }).catch(err => console.log(err))
 
-}); */
+});
+
+/* 
+router.post('/recipes-search', (req, res, next) => {
+    const { wordToSearch } = req.query
+
+    Recipe.find({ $and: [
+        {title: { $regex: wordToSearch }}, 
+        {description: {$regex: wordToSearch}},
+        {cuisine: { $regex: wordToSearch }}
+    ]})
+    .then(allRecipes => {
+        res.render('recipes/search', {recipes: allRecipes})
+    }).catch(err => console.log(err))
+}) */
+
 
 // create a recipe
 router.get('/recipe-create', isLoggedIn, (req, res) => {
@@ -82,7 +100,7 @@ router.get('/recipe-create', isLoggedIn, (req, res) => {
         userInSession: req.session.currentUser} ) 
 });
 
-router.post('/recipe-create', isLoggedIn,  (req, res, next) => {
+router.post('/recipe-create', isLoggedIn, (req, res, next) => {
     
     const author = req.session.currentUser._id
     const username = req.session.currentUser.username

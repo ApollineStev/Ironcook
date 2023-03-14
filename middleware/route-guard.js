@@ -16,7 +16,7 @@ const isLoggedOut = (req, res, next) => {
     }
     next();
 };
-  
+
 module.exports = {
     isLoggedIn,
     isLoggedOut
