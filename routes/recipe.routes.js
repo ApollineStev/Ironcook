@@ -81,16 +81,7 @@ router.get('/recipes-search', (req, res) => {
 
 /* 
 router.post('/recipes-search', (req, res, next) => {
-    const { wordToSearch } = req.query
 
-    Recipe.find({ $and: [
-        {title: { $regex: wordToSearch }}, 
-        {description: {$regex: wordToSearch}},
-        {cuisine: { $regex: wordToSearch }}
-    ]})
-    .then(allRecipes => {
-        res.render('recipes/search', {recipes: allRecipes})
-    }).catch(err => console.log(err))
 }) */
 
 

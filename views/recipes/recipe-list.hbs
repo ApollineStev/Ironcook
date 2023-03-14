@@ -1,24 +1,39 @@
-<h2>Recipes</h2>
+<section>
 
-{{#each recipe}}
+    <div class="album py-5 bg-light">
+
+        <div class="mx-5 text-uppercase">
+            <h2> Recipe list </h2>
+            <hr>
+        </div>
+
+
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                {{#each recipe}}
                 <div class="col">
                     <div class="card">
-                        <img src="{{imageUrl}}" class="card-img-top" alt="...">
+                        <img src="{{imageUrl}}" class="card-img-top img-responsive" alt="{{title}} image">
                         <div class="card-body">
-                            <h5 class="card-title">{{title}}</h5>
-                            <p class="card-text">Ingredients</p>
+                            <h5 class="card-title text-uppercase">{{title}}</h5>
+                            <p class="card-text">Ingredients | {{ingredients}}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cuisine : {{cuisine}}</li>
-                            <li class="list-group-item">Dish type : {{dishType}}</li>
-                            <li class="list-group-item">Cooking type : {{cookingTime}}</li>
-                            <li class="list-group-item">Difficulty : {{difficulty}}</li>
+                            <li class="list-group-item">CUISINE      | {{cuisine}}</li>
+                            <li class="list-group-item">Dish Type    | {{dishType}}</li>
+                            <li class="list-group-item">Cooking Time | {{cookingTime}}</li>
+                            <li class="list-group-item">Difficulty   | {{difficulty}}</li>
                         </ul>
                         <div class="card-body text-center">
                             <a href="/recipe/{{_id}}" class="btn btn-success">Read more</a>
                         </div>
                     </div>
                 </div>
-{{/each}}
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
+</section>
+
