@@ -5,6 +5,8 @@ const axios = require('axios')
 
 const mongoose = require("mongoose");
 
+const fileUploader = require('../config/cloudinary.config')
+
 ////// middleware  //////
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js')
 
@@ -82,14 +84,15 @@ router.get('/recipe-create', isLoggedIn, (req, res) => {
         userInSession: req.session.currentUser} ) 
 });
 
-router.post('/recipe-create',isLoggedIn,  (req, res, next) => {
+router.post('/recipe-create',isLoggedIn, /* fileUploader.single('imageUrl'),*/ (req, res, next) => {
     
     //req.session.currentUser = author
 
-    const {author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body;
+    const {author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime,imageUrl, date } = req.body;
 
-    Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date })
+    Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl , date })
     .then((recipe) => {
+        console.log(req.file)
         res.render(`recipes/detail`, { recipe : recipe})
     })
     .catch(error => next(error));
@@ -110,7 +113,7 @@ router.get('/recipe/:recipeId', isLoggedIn, (req, res, next) => {
 })
 
 //////////////    Edit recipe   /////////////////
-router.get('/recipe/:recipeId/edit' , isLoggedIn , (req, res, next) => {
+router.get('/recipe/:recipeId/edit' , (req, res, next) => {
     const { recipeId } = req.params
 
     Recipe.findById(recipeId).then(recipeToEdit => {
@@ -120,20 +123,21 @@ router.get('/recipe/:recipeId/edit' , isLoggedIn , (req, res, next) => {
 })
 
 
-router.post('/recipe/:recipeId/edit', isLoggedIn, (req, res, next) => {
+router.post('/recipe/:recipeId/edit',  (req, res, next) => {
     const { recipeId } =  req.params
+
     const { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body
 
     Recipe.findByIdAndUpdate(recipeId, { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date }, { new : true })
-    .then(updatedRecipe => {
-        res.redirect(`/recipe/${updatedRecipe.id}`)
-    })
-    .catch(err => next(err))
+        .then(updatedRecipe => {
+            res.redirect(`/recipes`)
+        })
+        .catch(err => next(err))
 })
 
 
 ////////////////////  Delete recipe //////////////////
-router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
+router.post('/recipe/:recipeId/delete',  (req, res, next) => {
     const { recipeId } = req.params
 
     Recipe.findByIdAndDelete(recipeId)
