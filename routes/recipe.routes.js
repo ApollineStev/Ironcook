@@ -13,10 +13,10 @@ const User = require("../models/User.model");
 
 //////////////   recipe list /////////////////
 
-router.get('/recipes', isLoggedIn, (req, res, next) => {
+router.get('/recipes', (req, res, next) => {
     Recipe.find()
     .then(recipes => {
-        res.render('recipes/recipe-list', { recipe : recipes })
+            res.render("recipes/recipe-list", {recipe: recipes})
     })
     .catch(err => next(err))
 })
@@ -37,8 +37,7 @@ router.get('/random', (req, res, next) => {
           console.log(response.data);
       })
       .then(response => {
-        console.log('hello')
-         return res.render('recipes/random', {response})
+         res.render('recipes/random', {response})
       })
       .catch(function (error) {
           console.error(error);
