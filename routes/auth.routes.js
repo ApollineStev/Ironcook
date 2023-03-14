@@ -63,7 +63,7 @@ router.post("/signup", (req, res, next) => {
 
 
 ///// login /////
-router.get('/login', (req, res, next) => res.render('auth/login'))
+router.get('/login', isLoggedOut, (req, res, next) => res.render('auth/login'))
 
 router.post('/login', (req, res, next) => {
     console.log('SESSION =====> ', req.session);
@@ -94,7 +94,10 @@ router.post('/login', (req, res, next) => {
 ////// user profile ///////
 
 router.get('/userProfile', isLoggedIn, (req, res) => {
-  res.render('user/user-profile', { userInSession: req.session.currentUser })
+  const recipes = [...req.session.currentUser.recipes]
+  const userInSession = req.session.currentUser
+  console.log(recipes)
+  res.render('user/user-profile', { userInSession, recipes })
 }) 
 
 

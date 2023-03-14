@@ -3,9 +3,9 @@
 
   {{#if userInSession}}
 
-    {{#with userInSession.recipes}}
-      {{this}}
-    {{/with}}
+    {{#each userInSession.recipes}}
+      <h3> {{this.title}} </h3>
+    {{/each}}
 
     <div class="album py-5 bg-light">
 
