@@ -1,9 +1,36 @@
-<h2>random</h2>
+{{!-- axios 
 
-{{#each response}}
-        <div>
-            <h2>title : {{title}}</h2>
+    {{#each response}}
+            <div>
+                <h2>title : {{title}}</h2>
+            </div>
+    {{/each}}
+
+    <p>{{response.data}}</p>
+
+
+--}}
+
+
+<section>
+    <div class="album py-5 bg-light">
+
+        <div class="mx-5">
+            <h2> Random recipe: {{randomRecipe.title}} </h2>
+            <hr>
         </div>
-{{/each}}
 
-<p>{{response.data}}</p>
+        <div> 
+            <p>Recipe by : {{randomRecipe.author}}</p>
+            <p>Description : {{randomRecipe.description}}</p>
+            <p>Ingredients : {{randomRecipe.ingredients}}</p>
+            <p>Cuisine : {{randomRecipe.cuisine}}</p>
+            <p>Dish type : {{randomRecipe.dishType}}</p>
+            <p>Difficulty : {{randomRecipe.difficulty}}</p>
+            <p>Cooking time : {{randomRecipe.cookingTime}} min</p>
+            <img src="{{randomRecipe.imageUrl}}">
+        </div> 
+
+    </div>
+    
+</section>
