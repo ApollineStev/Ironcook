@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
+const fileUploader = require('../config/cloudinary.config')
+
 ////// middleware  //////
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js')
 

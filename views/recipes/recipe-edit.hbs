@@ -7,7 +7,7 @@
 <br>
 <br>
 
-<form action="POST" onsubmit="">
+<form action="/recipe/{{recipe.id}}/edit" method="POST">
     <div class="mx-5 mb-3">
                     <label for="formGroupExampleInput" class="form-label">Title</label>
                     <input type="text" name="title" class="form-control" id="formGroupExampleInput" value="{{recipe.title}}">
@@ -60,14 +60,28 @@
                     </label>
 
                     <label for="formGroupExampleInput" class="form-label"> Image
-                        <input type="file" name="imageUrl" class="form-control" id="formGroupExampleInput" value="{{recipe.imageUrl}}">
+                        <input type="file" name="imageUrl" class="form-control" id="formGroupExampleInput" value="{{recipe.id}}">
                     </label>
 
                 </div>
 
                 <div class=" m-auto justify-content-center">
-                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <button class="btn btn-success">Save Changes</button>
                     <button > Create </button>
+                        <script>
+
+        window.onload = () => {
+            document.querySelector("form").onkeypress = (event) => {
+
+                // Disable Return on Inputs
+                if (event.key == "Enter") {
+                    event.preventDefault()
+                }
+            }
+        }
+
+    </script>
+                    
                 </div>
                 
 
