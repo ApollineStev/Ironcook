@@ -7,7 +7,7 @@
         </div>
 
         <div> 
-            <p>Recipe by : {{recipe.author}}</p>
+            <p>Recipe by : {{username}}</p>
             <p>Description : {{recipe.description}}</p>
             <p>Ingredients : {{recipe.ingredients}}</p>
             <p>Cuisine : {{recipe.cuisine}}</p>
@@ -25,7 +25,7 @@
                 </a>
 
                 <form action="/recipe/{{recipe._id}}/delete" method="Post">
-                   <button>Delet recipe</button>
+                    <button>Delet recipe</button>
                 </form>
             </div>
 
