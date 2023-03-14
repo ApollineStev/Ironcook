@@ -22,28 +22,44 @@ router.get('/recipes', (req, res, next) => {
 })
 
 ////////////////// axios test////////////////////
-
+/*
 router.get('/random', (req, res, next) => {
     const options = {
         method: 'GET',
         url: 'https://random-recipes.p.rapidapi.com/ai-quotes/1',
         headers: {
-          'X-RapidAPI-Key': '3277c2f1d7msh7171818c2674ff8p12125bjsnaf08cc3db9f7',
-          'X-RapidAPI-Host': 'random-recipes.p.rapidapi.com'
+            'X-RapidAPI-Key': '3277c2f1d7msh7171818c2674ff8p12125bjsnaf08cc3db9f7',
+            'X-RapidAPI-Host': 'random-recipes.p.rapidapi.com'
         }
-      };
-      
-      axios.request(options).then(function (response) {
-          console.log(response.data);
-      })
-      .then(response => {
-         res.render('recipes/random', {response})
-      })
-      .catch(function (error) {
-          console.error(error);
-      });
-})
+    };
 
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+    })
+    .then(response => {
+        console.log('hello')
+        return res.render('recipes/random', {response})
+    })
+    .catch(function (error) {
+        console.error(error);
+    });
+})
+*/
+
+// get random recipe
+
+router.get('/random', (req, res, next) => {
+
+    Recipe.estimatedDocumentCount().then((count) => {
+        let random = Math.floor(Math.random() * count)
+
+        Recipe.findOne().skip(random)
+        .then((randomRecipe) => {
+            res.render("recipes/random", {randomRecipe})
+        });
+    })
+
+})
 
 
 // search a recipe (button click =>)
