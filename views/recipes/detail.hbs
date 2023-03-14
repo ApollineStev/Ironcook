@@ -18,7 +18,18 @@
 
         </div>
 
-        
+
+            <div>
+                <a href="/products/{{id}}/edit">
+                    <button add product-id="{{id}}">Edit</button>
+                </a>
+
+                <form action="/recipe/{{recipe._id}}/delete" method="Post">
+                   <button>Delet recipe</button>
+                </form>
+            </div>
+
+        <!--       Commented for now I don't get the user thing...
         {{#if userInSession}}
             <div>
                 <a href="/products/{{id}}/edit">
@@ -29,7 +40,7 @@
                     <button remove recipe-id="{{id}}">Remove</button>
                 </a>
             </div>
-        {{/if}}
+        {{/if}}-->
 
 
 

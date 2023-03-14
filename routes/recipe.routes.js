@@ -90,7 +90,7 @@ router.post('/recipe-create',isLoggedIn,  (req, res, next) => {
 
     Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date })
     .then((recipe) => {
-        res.render(`recipes/detail`, { recipe })
+        res.render(`recipes/detail`, { recipe : recipe})
     })
     .catch(error => next(error));
 
@@ -109,5 +109,18 @@ router.get('/recipe/:recipeId', isLoggedIn, (req, res, next) => {
     .catch(error => next(error));
 })
 
+//////////////    Edit recipe   /////////////////
+
+////////////////////  Delete recipe //////////////////
+router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
+    const { recipeId } = req.params
+
+    Recipe.findByIdAndDelete(recipeId)
+    .then(() => {
+        console.log('recipe deleted')
+        res.redirect('/recipes')
+    })
+    .catch(err => next(err))
+})
 
 module.exports = router;
