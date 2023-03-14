@@ -55,7 +55,6 @@ router.get('/random', (req, res, next) => {
 
         Recipe.findOne().skip(random)
         .then((randomRecipe) => {
-            console.log(randomRecipe);
             res.render("recipes/random", {randomRecipe})
         });
     })
