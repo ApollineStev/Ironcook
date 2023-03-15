@@ -11,6 +11,7 @@ const fileUploader = require('../config/cloudinary.config')
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js')
 
 const User = require("../models/User.model");
+const Recipe = require("../models/Recipe.model");
 
 ///// signup /////
 router.get("/signup", isLoggedOut, (req, res) => res.render("auth/signup"));
@@ -96,7 +97,11 @@ router.post('/login', (req, res, next) => {
 router.get('/userProfile', isLoggedIn, (req, res) => {
   
   const userInSession = req.session.currentUser
-  res.render('user/user-profile', { userInSession, recipes: userInSession.recipes })
+  console.log(userInSession._id)
+
+  Recipe.find({author: userInSession._id})
+  .then(myRecipes => res.render('user/user-profile', { userInSession, recipes: myRecipes }))
+
 }) 
 
 

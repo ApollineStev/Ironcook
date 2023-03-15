@@ -3,12 +3,6 @@
 
   {{#if userInSession}}
 
-
-    {{!-- To solve! doesn't work --}}
-    {{#each recipes}}
-      <h3> {{this.title}} </h3>
-    {{/each}}
-
     <div class="album py-5 bg-light">
 
       <div class="row">
@@ -26,24 +20,27 @@
 
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        {{#each recipes}}
           <div class="col">
             <div class="card">
-              <img src="/images/kitchen-img.jpg" class="card-img-top" alt="...">
+              <img src="{{imageUrl}}" class="card-img-top" alt="...">
               <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Ingredients</p>
+                  <h5 class="card-title">{{title}}</h5>
+                  <p class="card-text">{{ingredients}}</p>
               </div>
               <ul class="list-group list-group-flush">
-                  <li class="list-group-item">cuisine</li>
-                  <li class="list-group-item">dish type</li>
-                  <li class="list-group-item">cooking time</li>
-                  <li class="list-group-item">difficulty</li>
+                  <li class="list-group-item">{{cuisine}}</li>
+                  <li class="list-group-item">{{dishType}}</li>
+                  <li class="list-group-item">{{difficulty}}</li>
+                  <li class="list-group-item">{{cookingTime}} minutes</li>
               </ul>
               <div class="card-body text-center">
                   <a href="#" class="btn btn-success">Read more</a>
               </div>
             </div>
           </div>
+        {{/each}}
 
         </div>
       </div>
