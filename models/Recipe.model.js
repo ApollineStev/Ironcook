@@ -4,10 +4,10 @@ const User = require("../models/User.model");
 
 const recipeSchema = new Schema(
   {
-    author: [{
+    author: {
       type: Schema.Types.ObjectId,
       ref: "User"
-    }],
+    },
     title: {
       type: String,
       required: true,

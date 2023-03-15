@@ -98,9 +98,9 @@ router.post('/recipe-create', isLoggedIn, (req, res, next) => {
     const author = req.session.currentUser._id
     const username = req.session.currentUser.username
 
-    const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body;
+    const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body;
 
-    Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl , date })
+    Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path , date })
     .then((recipe) => {
         res.render(`recipes/detail`, { recipe : recipe, username })
     })
@@ -115,6 +115,7 @@ router.get('/recipe/:recipeId', isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params;
 
     Recipe.findById(recipeId)
+    .populate('author')
     .then(recipe => {
         res.render('recipes/detail', { recipe: recipe })
     })
@@ -135,9 +136,9 @@ router.get('/recipe/:recipeId/edit' , (req, res, next) => {
 router.post('/recipe/:recipeId/edit',  (req, res, next) => {
     const { recipeId } =  req.params
 
-    const { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body
+    const { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body
 
-    Recipe.findByIdAndUpdate(recipeId, { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date }, { new : true })
+    Recipe.findByIdAndUpdate(recipeId, { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path, date }, { new : true })
         .then(updatedRecipe => {
             res.redirect(`/recipes`)
         })

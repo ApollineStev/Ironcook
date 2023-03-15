@@ -94,10 +94,9 @@ router.post('/login', (req, res, next) => {
 ////// user profile ///////
 
 router.get('/userProfile', isLoggedIn, (req, res) => {
-  const recipes = [...req.session.currentUser.recipes]
+  
   const userInSession = req.session.currentUser
-  console.log(recipes)
-  res.render('user/user-profile', { userInSession, recipes })
+  res.render('user/user-profile', { userInSession, recipes: userInSession.recipes })
 }) 
 
 
