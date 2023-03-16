@@ -64,27 +64,21 @@ router.get('/random', (req, res, next) => {
 })
 
 
-// search a recipe (button click =>)
+// search recipes
 router.get('/recipes-search', (req, res) => {
 
     const { wordToSearch } = req.query
 
-    Recipe.find({ $and: [
-        {title: { $regex: wordToSearch }}, 
-        {description: { $regex: wordToSearch }},
-        {cuisine: { $regex: wordToSearch }}
+    Recipe.find({ $or: [
+        {'title': { $regex: wordToSearch }}, 
+        {'description': { $regex: wordToSearch }},
+        {'cuisine': { $regex: wordToSearch }}
     ]})
     .then(allRecipes => {
-        console.log(allRecipes)
-        res.render('recipes/search', {recipes: allRecipes})
+        res.render('recipes/search', {recipes: allRecipes, wordToSearch})
     }).catch(err => console.log(err))
 
 });
-
-/* 
-router.post('/recipes-search', (req, res, next) => {
-
-}) */
 
 
 // create a recipe

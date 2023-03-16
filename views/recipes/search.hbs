@@ -1,5 +1,48 @@
-{{#each recipes}}
-    
-    <h3> {{recipes.title}} </h3>    
-    
-{{/each}}
+<section>
+
+    <div class="album py-5 bg-light">
+
+        <div class="mx-5 text-uppercase">
+            <h2> Recipe Search Result </h2>
+            <hr>
+        </div>
+
+        {{#if recipes}}
+
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                {{#each recipes}}
+                <div class="col">
+                    <div class="card">
+                        <img src="{{imageUrl}}" class="card-img-top img-responsive" alt="{{title}}">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase">{{title}}</h5>
+                            <p class="card-text">Ingredients | {{ingredients}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">CUISINE      | {{cuisine}}</li>
+                            <li class="list-group-item">Dish Type    | {{dishType}}</li>
+                            <li class="list-group-item">Cooking Time | {{cookingTime}}</li>
+                            <li class="list-group-item">Difficulty   | {{difficulty}}</li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <a href="/recipe/{{_id}}" class="btn btn-success">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+        </div>
+
+        {{else}}
+
+        <div class="mx-5">
+            <h4> There is no recipe about {{wordToSearch}}. </h4>
+        </div>
+
+        {{/if}}
+    </div>
+</section>
+
