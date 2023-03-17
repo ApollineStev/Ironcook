@@ -87,14 +87,14 @@ router.get('/recipe-create', isLoggedIn, (req, res) => {
         userInSession: req.session.currentUser} ) 
 });
 
-router.post('/recipe-create', isLoggedIn, (req, res, next) => {
+router.post('/recipe-create', isLoggedIn,fileUploader.single('imageUrl'), (req, res, next) => {
     
     const author = req.session.currentUser._id
     
-    const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body;
+    const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body;
 
-    Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date })
-    .populate('author')
+    Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path , date })
+    //.populate('author')
     .then((recipe) => res.render(`recipes/detail`, { recipe : recipe }))
     .catch(error => next(error));
 

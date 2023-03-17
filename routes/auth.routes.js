@@ -105,7 +105,7 @@ router.get('/userProfile', isLoggedIn, (req, res) => {
 
 
 /////////// log out ///////////
-router.post('/logout', (req, res, next) => {
+router.post('/logout', isLoggedIn, (req, res) => {
     req.session.destroy()
     res.redirect('/')
 });
