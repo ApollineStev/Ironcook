@@ -29,28 +29,15 @@
                   <input name="wordToSearch" type="search" class="form-control form-control-dark text-bg-light" placeholder="" aria-label="Search">
                   <button class="btn btn-outline-warning me-1" type="submit">Search</button>
                </form>
-  <!--             
+
+
+               
                   <form action="/logout" method="POST">
-                     <button type="submit" class="btn btn-outline-light me-2">Logout</button>
-                  </form>
-                  <button type="button" class="btn btn-outline-light me-2"><a href="/login" class="text-decoration-none text-white">Login</a></button>
-                  <button type="button" class="btn btn-warning"><a href="/signup" class="text-decoration-none text-success">Sign-up</a></button>
-                  <button type="button" class="btn btn-warning"><a href="/userProfile" class="text-decoration-none text-success">Profile</a></button>
-     -->         
-               {{#if userInSession}}
-                  <form action="/logout" method="POST">
-                     <button type="submit" class="btn btn-outline-light me-2">Logout</button>
+                     <button type="button" class="btn btn-outline-light me-2"><a href="/" class="text-decoration-none text-white">Logout</a></button>
                   </form>
                   <button type="button" class="btn btn-warning"><a href="/userProfile" class="text-decoration-none text-success">Profile</a></button>
                   
-               {{else}}
-                  <button type="button" class="btn btn-outline-light me-2"><a href="/login" class="text-decoration-none text-white">Login</a></button>
-                  <button type="button" class="btn btn-warning"><a href="/signup" class="text-decoration-none text-success">Sign-up</a></button>
-
-                  
-               {{/if}}
-
-
+               
             </div>
          </div>
       </header>

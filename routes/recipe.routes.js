@@ -18,30 +18,32 @@ const User = require("../models/User.model");
 router.get('/recipes', (req, res, next) => {
     Recipe.find()
     .then(recipes => {
-            res.render("recipes/recipe-list", {recipe: recipes})
+            res.render("recipes/recipe-list", {recipe: recipes ,
+                userInSession: req.session.currentUser})
     })
     .catch(err => next(err))
 })
 
 ////////////////// axios test////////////////////
 /*
-router.get('/random', (req, res, next) => {
+router.get('/axios', (req, res, next) => {
     const options = {
-        method: 'GET',
-        url: 'https://random-recipes.p.rapidapi.com/ai-quotes/1',
-        headers: {
-            'X-RapidAPI-Key': '3277c2f1d7msh7171818c2674ff8p12125bjsnaf08cc3db9f7',
-            'X-RapidAPI-Host': 'random-recipes.p.rapidapi.com'
-        }
+    method: 'GET',
+    url: 'https://yummly2.p.rapidapi.com/feeds/list',
+    params: {limit: '2', start: '0'},
+    headers: {
+        'X-RapidAPI-Key': '3277c2f1d7msh7171818c2674ff8p12125bjsnaf08cc3db9f7',
+        'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+    }
     };
 
     axios.request(options).then(function (response) {
         console.log(response.data);
     })
-    .then(response => {
-        console.log('hello')
-        return res.render('recipes/random', {response})
-    })
+    .then((recipe) =>
+    res.json(recipe)
+    
+    )
     .catch(function (error) {
         console.error(error);
     });
@@ -57,7 +59,8 @@ router.get('/random', (req, res, next) => {
 
         Recipe.findOne().skip(random)
         .then((randomRecipe) => {
-            res.render("recipes/random", {randomRecipe})
+            res.render("recipes/random", {randomRecipe ,
+                userInSession: req.session.currentUser})
         });
     })
 
@@ -75,7 +78,8 @@ router.get('/recipes-search', (req, res) => {
         {'cuisine': { $regex: wordToSearch }}
     ]})
     .then(allRecipes => {
-        res.render('recipes/search', {recipes: allRecipes, wordToSearch})
+        res.render('recipes/search', {recipes: allRecipes, wordToSearch, 
+            userInSession: req.session.currentUser})
     }).catch(err => console.log(err))
 
 });
@@ -87,7 +91,7 @@ router.get('/recipe-create', isLoggedIn, (req, res) => {
         userInSession: req.session.currentUser} ) 
 });
 
-router.post('/recipe-create', isLoggedIn,fileUploader.single('imageUrl'), (req, res, next) => {
+router.post('/recipe-create', isLoggedIn, fileUploader.single('imageUrl'), (req, res, next) => {
     
     const author = req.session.currentUser._id
     
@@ -102,35 +106,37 @@ router.post('/recipe-create', isLoggedIn,fileUploader.single('imageUrl'), (req, 
 
 
 // show recipe detail
-router.get('/recipe/:recipeId', isLoggedIn, (req, res, next) => { 
+router.get('/recipe/:recipeId', (req, res, next) => { 
 
     const { recipeId } = req.params;
 
     Recipe.findById(recipeId)
     .populate('author')
     .then(recipe => {
-        res.render('recipes/detail', { recipe: recipe })
+        res.render('recipes/detail', { recipe: recipe ,
+            userInSession: req.session.currentUser})
     })
     .catch(error => next(error));
 })
 
 //////////////    Edit recipe   /////////////////
-router.get('/recipe/:recipeId/edit' , (req, res, next) => {
+router.get('/recipe/:recipeId/edit' ,isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
 
     Recipe.findById(recipeId).then(recipeToEdit => {
-        res.render('recipes/recipe-edit.hbs', {recipe: recipeToEdit})
+        res.render('recipes/recipe-edit.hbs', {recipe: recipeToEdit, 
+            userInSession: req.session.currentUser})
     })
     .catch(err => next(err))
 })
 
 
-router.post('/recipe/:recipeId/edit',  (req, res, next) => {
+router.post('/recipe/:recipeId/edit',isLoggedIn , fileUploader.single('imageUrl'),  (req, res, next) => {
     const { recipeId } =  req.params
 
-    const { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date } = req.body
+    const { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body
 
-    Recipe.findByIdAndUpdate(recipeId, { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl, date }, { new : true })
+    Recipe.findByIdAndUpdate(recipeId, { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path , date }, { new : true })
         .then(updatedRecipe => {
             res.redirect(`/recipes`)
         })
@@ -139,7 +145,7 @@ router.post('/recipe/:recipeId/edit',  (req, res, next) => {
 
 
 ////////////////////  Delete recipe //////////////////
-router.post('/recipe/:recipeId/delete',  (req, res, next) => {
+router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
 
     Recipe.findByIdAndDelete(recipeId)

@@ -15,7 +15,8 @@ router.get("/", (req, res, next) => {
     Recipe.find().sort({ createdAt: -1 }).limit(6)
     .then(recentRecipes => {
 
-        res.render("index", {recentRecipes} );
+        res.render("index", {recentRecipes ,
+            userInSession: req.session.currentUser} );
     })
     .catch(err => next(err))
 

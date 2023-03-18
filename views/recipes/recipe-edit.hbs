@@ -7,7 +7,7 @@
 <br>
 <br>
 
-<form action="/recipe/{{recipe.id}}/edit" method="POST">
+<form action="/recipe/{{recipe.id}}/edit" method="POST" enctype="multipart/form-data">
     <div class="mx-5 mb-3">
                     <label for="formGroupExampleInput" class="form-label">Title</label>
                     <input type="text" name="title" class="form-control" id="formGroupExampleInput" value="{{recipe.title}}">
@@ -67,7 +67,7 @@
 
                 <div class=" m-auto justify-content-center">
                     <button class="btn btn-success">Save Changes</button>
-                    <button > Create </button>
+                    
                         <script>
 
         window.onload = () => {
