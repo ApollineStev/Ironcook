@@ -19,11 +19,13 @@
             
 
         </div>
+        
+
+
+
         {{/with}}
 
-        
-<!--
-        <div>
+                <div>
             <a href="/recipe/{{recipe._id}}/edit">
                 <button add product-id="{{id}}">Edit</button>
             </a>
@@ -33,11 +35,28 @@
             </form>
         </div>
 
+
+
+
+        <!--       Commented for now I don't get the user thing...
+        {{#if userInSession}}
+            <div>
+                <a href="/products/{{id}}/edit">
+                    <button add product-id="{{id}}">Edit</button>
+                </a>
+
+                <a href="/recipe/{{id}}/delete">
+                    <button remove recipe-id="{{id}}">Remove</button>
+                </a>
+            </div>
+        {{/if}}-->
+
+
         <div>
             <a href="/recipes">Back to the recipe list</a>
         </div>
 
--->
+
 
 
 

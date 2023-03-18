@@ -113,8 +113,18 @@ router.get('/recipe/:recipeId', (req, res, next) => {
     Recipe.findById(recipeId)
     .populate('author')
     .then(recipe => {
-        res.render('recipes/detail', { recipe: recipe ,
+        let user =  req.session.currentUser.username
+        let author =  recipe.author.username
+        if( user == author ){
+            res.render('recipes/detailsUser', { recipe: recipe ,
+                userInSession: req.session.currentUser})
+        }else{
+             res.render('recipes/detail', { recipe: recipe ,
             userInSession: req.session.currentUser})
+        }
+        console.log(user, author)
+       /* res.render('recipes/detail', { recipe: recipe ,
+            userInSession: req.session.currentUser})*/
     })
     .catch(error => next(error));
 })
@@ -124,6 +134,7 @@ router.get('/recipe/:recipeId/edit' ,isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
 
     Recipe.findById(recipeId).then(recipeToEdit => {
+        
         res.render('recipes/recipe-edit.hbs', {recipe: recipeToEdit, 
             userInSession: req.session.currentUser})
     })
