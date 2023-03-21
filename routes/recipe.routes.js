@@ -98,11 +98,15 @@ router.get('/recipe/:recipeId', (req, res, next) => {
                 res.render('recipes/detailsUser', { recipe: recipe,
                 userInSession: req.session.currentUser})
             } 
+            else
+            {
+                res.render('recipes/detail', { recipe: recipe,
+                userInSession: req.session.currentUser})
+            }
         }
         else
         {
-            res.render('recipes/detail', { recipe: recipe,
-            userInSession: req.session.currentUser})
+            res.render('recipes/detail', { recipe: recipe })
         }
     })
     .catch(error => next(error));
