@@ -68,7 +68,7 @@ router.get('/recipe-create', isLoggedIn, (req, res) => {
 
 router.post('/recipe-create', isLoggedIn, fileUploader.single('imageUrl'), (req, res, next) => {
     
-    const author = req.session.currentUser.username
+    const author = req.session.currentUser._id
     
     const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body;
 
