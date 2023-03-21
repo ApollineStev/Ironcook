@@ -13,8 +13,8 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js')
 const Recipe = require("../models/Recipe.model");
 const User = require("../models/User.model");
 
-//////////////   recipe list /////////////////
 
+//////////////   recipe list /////////////////
 router.get('/recipes', (req, res, next) => {
     Recipe.find()
     .then(recipes => {
@@ -24,31 +24,6 @@ router.get('/recipes', (req, res, next) => {
     .catch(err => next(err))
 })
 
-////////////////// axios test////////////////////
-/*
-router.get('/axios', (req, res, next) => {
-    const options = {
-    method: 'GET',
-    url: 'https://yummly2.p.rapidapi.com/feeds/list',
-    params: {limit: '2', start: '0'},
-    headers: {
-        'X-RapidAPI-Key': '3277c2f1d7msh7171818c2674ff8p12125bjsnaf08cc3db9f7',
-        'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
-    }
-    };
-
-    axios.request(options).then(function (response) {
-        console.log(response.data);
-    })
-    .then((recipe) =>
-    res.json(recipe)
-    
-    )
-    .catch(function (error) {
-        console.error(error);
-    });
-})
-*/
 
 // get random recipe
 
@@ -58,12 +33,12 @@ router.get('/random', (req, res, next) => {
         let random = Math.floor(Math.random() * count)
 
         Recipe.findOne().skip(random)
+        .populate('author')
         .then((randomRecipe) => {
-            res.render("recipes/random", {randomRecipe ,
-                userInSession: req.session.currentUser})
+            res.render("recipes/random", {randomRecipe,
+            userInSession: req.session.currentUser})
         });
     })
-
 })
 
 
@@ -115,16 +90,16 @@ router.get('/recipe/:recipeId', (req, res, next) => {
     .then(recipe => {
         let user =  req.session.currentUser.username
         let author =  recipe.author.username
-        if( user == author ){
-            res.render('recipes/detailsUser', { recipe: recipe ,
-                userInSession: req.session.currentUser})
-        }else{
-             res.render('recipes/detail', { recipe: recipe ,
+        if( user == author )
+        {
+            res.render('recipes/detailsUser', { recipe: recipe,
+            userInSession: req.session.currentUser})
+        } 
+        else
+        {
+            res.render('recipes/detail', { recipe: recipe,
             userInSession: req.session.currentUser})
         }
-        console.log(user, author)
-       /* res.render('recipes/detail', { recipe: recipe ,
-            userInSession: req.session.currentUser})*/
     })
     .catch(error => next(error));
 })
