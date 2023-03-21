@@ -13,8 +13,8 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js')
 const Recipe = require("../models/Recipe.model");
 const User = require("../models/User.model");
 
-//////////////   recipe list /////////////////
 
+//////////////   recipe list /////////////////
 router.get('/recipes', (req, res, next) => {
     Recipe.find()
     .then(recipes => {
@@ -35,13 +35,10 @@ router.get('/random', (req, res, next) => {
         Recipe.findOne().skip(random)
         .populate('author')
         .then((randomRecipe) => {
-            let author =  randomRecipe.author.username 
-            console.log(author)
-            res.render("recipes/random", {randomRecipe ,
-                userInSession: req.session.currentUser, author})
+            res.render("recipes/random", {randomRecipe,
+            userInSession: req.session.currentUser})
         });
     })
-
 })
 
 
@@ -93,16 +90,16 @@ router.get('/recipe/:recipeId', (req, res, next) => {
     .then(recipe => {
         let user =  req.session.currentUser.username
         let author =  recipe.author.username
-        if( user == author ){
-            res.render('recipes/detailsUser', { recipe: recipe ,
-                userInSession: req.session.currentUser})
-        }else{
-             res.render('recipes/detail', { recipe: recipe ,
+        if( user == author )
+        {
+            res.render('recipes/detailsUser', { recipe: recipe,
+            userInSession: req.session.currentUser})
+        } 
+        else
+        {
+            res.render('recipes/detail', { recipe: recipe,
             userInSession: req.session.currentUser})
         }
-        console.log(user, author)
-       /* res.render('recipes/detail', { recipe: recipe ,
-            userInSession: req.session.currentUser})*/
     })
     .catch(error => next(error));
 })
