@@ -33,9 +33,12 @@ router.get('/random', (req, res, next) => {
         let random = Math.floor(Math.random() * count)
 
         Recipe.findOne().skip(random)
+        .populate('author')
         .then((randomRecipe) => {
+            let author =  randomRecipe.author.username 
+            console.log(author)
             res.render("recipes/random", {randomRecipe ,
-                userInSession: req.session.currentUser})
+                userInSession: req.session.currentUser, author})
         });
     })
 
