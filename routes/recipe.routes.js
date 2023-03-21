@@ -79,7 +79,7 @@ router.post('/recipe-create', isLoggedIn, fileUploader.single('imageUrl'), (req,
 });
 
 
-// show recipe detail
+//////////////    Detail recipe   /////////////////
 router.get('/recipe/:recipeId', (req, res, next) => { 
 
     const { recipeId } = req.params;
@@ -87,13 +87,18 @@ router.get('/recipe/:recipeId', (req, res, next) => {
     Recipe.findById(recipeId)
     .populate('author')
     .then(recipe => {
-        let user =  req.session.currentUser.username
-        let author =  recipe.author.username
-        if( user == author )
+
+        if(req.session.currentUser)
         {
-            res.render('recipes/detailsUser', { recipe: recipe,
-            userInSession: req.session.currentUser})
-        } 
+            let user =  req.session.currentUser.username
+            let author =  recipe.author.username
+
+            if( user == author )
+            {
+                res.render('recipes/detailsUser', { recipe: recipe,
+                userInSession: req.session.currentUser})
+            } 
+        }
         else
         {
             res.render('recipes/detail', { recipe: recipe,
