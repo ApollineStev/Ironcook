@@ -24,31 +24,6 @@ router.get('/recipes', (req, res, next) => {
     .catch(err => next(err))
 })
 
-////////////////// axios test////////////////////
-/*
-router.get('/axios', (req, res, next) => {
-    const options = {
-    method: 'GET',
-    url: 'https://yummly2.p.rapidapi.com/feeds/list',
-    params: {limit: '2', start: '0'},
-    headers: {
-        'X-RapidAPI-Key': '3277c2f1d7msh7171818c2674ff8p12125bjsnaf08cc3db9f7',
-        'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
-    }
-    };
-
-    axios.request(options).then(function (response) {
-        console.log(response.data);
-    })
-    .then((recipe) =>
-    res.json(recipe)
-    
-    )
-    .catch(function (error) {
-        console.error(error);
-    });
-})
-*/
 
 // get random recipe
 
@@ -93,13 +68,13 @@ router.get('/recipe-create', isLoggedIn, (req, res) => {
 
 router.post('/recipe-create', isLoggedIn, fileUploader.single('imageUrl'), (req, res, next) => {
     
-    const author = req.session.currentUser._id
+    const author = req.session.currentUser.username
     
     const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body;
 
     Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path , date })
     //.populate('author')
-    .then((recipe) => res.render(`recipes/detail`, { recipe : recipe }))
+    .then((recipe) => res.render(`recipes/detail`, { recipe : recipe , userInSession: req.session.currentUser}))
     .catch(error => next(error));
 
 });
