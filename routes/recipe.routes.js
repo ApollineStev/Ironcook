@@ -73,7 +73,7 @@ router.post('/recipe-create', isLoggedIn, fileUploader.single('imageUrl'), (req,
     const {title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body;
 
     Recipe.create({author, title,  description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path , date })
-    //.populate('author')
+    .populate('author')
     .then((recipe) => res.render(`recipes/detail`, { recipe : recipe , userInSession: req.session.currentUser}))
     .catch(error => next(error));
 
