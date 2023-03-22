@@ -10,9 +10,3 @@ a {
 h1 {
   color: 15px;
 }
-
-.login {
-  background-image: url('../images/kitchen-img.jpg');
-  background-size:cover;
-  background-repeat: no-repeat
-}

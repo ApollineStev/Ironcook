@@ -28,10 +28,11 @@ About us:
 - Users can see who made this web app.
 
 
-## ROUTES:
-
+## ROUTES
+### Homepage: 
 - GET / 
   - renders the homepage
+### Auth: 
 - GET /signup
   - redirects to / if user logged in
   - renders the signup form
@@ -54,27 +55,50 @@ About us:
   - renders the user profile page(my recipes list)
 - POST /logout
   - body: (empty)
-
+### Recipes: 
 - GET /recipes
   - renders the recipe list
 - GET /random
   - renders one random recipe
-
-<!-- WIP -->  
-- POST /events/create 
-  - redirects to / if user is anonymous
+- GET /recipes-search
+  - renders the search result
+- GET /recipe-create
+  - renders the recipe create form
+- POST /recipe-create
+  - redirects to / if user logged out
+  - req.session.currentUser._id: 
+    - author
   - body: 
-    - name
-    - date
-    - location
+    - title
     - description
-- GET /events/:id
-  - renders the event detail page
-  - includes the list of attendees
-  - attend button if user not attending yet
-- POST /events/:id/attend 
-  - redirects to / if user is anonymous
-  - body: (empty - the user is already stored in the session)
+    - ingredients
+    - cuisine
+    - dishType
+    - difficulty
+    - cookingTime
+    - date
+- GET /recipe/:recipeId
+  - renders the recipe detail page
+  - edit and delette button if user is the author of this recipe
+- GET /recipe/:recipeId/edit
+  - renders the recipe edit page
+- POST /recipe/:recipeId/edit
+  - redirects to / if user anonymous
+  - body: 
+    - title
+    - description
+    - ingredients
+    - cuisine
+    - dishType
+    - difficulty
+    - cookingTime
+    - date
+- POST /recipe/:recipeId/delete
+  - redirects to / if user anonymous
+  - redirects to /recipes after delete the recipe
+### About Us: 
+- GET /aboutUs
+  - renders the about us page
 
 
 ## Models

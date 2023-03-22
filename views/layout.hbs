@@ -7,7 +7,7 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{appTitle}}</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-      <link rel="stylesheet" href="/stylesheets/style.css" />
+      <link rel="stylesheet" href="./stylesheets/style.css" />
    </head>
 
    <body class="bg-light">
@@ -15,7 +15,7 @@
          <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                  <img src="/images/logo.png" width="80" aria-label="Bootstrap">
+                  <img src="./images/logo.png" width="80" aria-label="Bootstrap">
                </a>
 
                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -29,14 +29,7 @@
                   <input name="wordToSearch" type="search" class="form-control form-control-dark text-bg-light" placeholder="" aria-label="Search">
                   <button class="btn btn-outline-warning me-1 ml-1" type="submit">Search</button>
                </form>
-<!--             
-                  <form action="/logout" method="POST">
-                     <button type="submit" class="btn btn-outline-light me-2">Logout</button>
-                  </form>
-                  <button type="button" class="btn btn-outline-light me-2"><a href="/login" class="text-decoration-none text-white">Login</a></button>
-                  <button type="button" class="btn btn-warning"><a href="/signup" class="text-decoration-none text-success">Sign-up</a></button>
-                  <button type="button" class="btn btn-warning"><a href="/userProfile" class="text-decoration-none text-success">Profile</a></button>
--->         
+
                {{#if userInSession}}
                   <form action="/logout" method="POST">
                      <button type="submit" class="btn btn-outline-light me-2">Logout</button>
@@ -58,7 +51,7 @@
       {{{body}}}
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-      <script src="/js/script.js"></script>
+      <script src="./js/script.js"></script>
    </body>
 
 </html>

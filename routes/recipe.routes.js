@@ -113,7 +113,7 @@ router.get('/recipe/:recipeId', (req, res, next) => {
 })
 
 //////////////    Edit recipe   /////////////////
-router.get('/recipe/:recipeId/edit' ,isLoggedIn, (req, res, next) => {
+router.get('/recipe/:recipeId/edit', isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
 
     Recipe.findById(recipeId).then(recipeToEdit => {
@@ -125,12 +125,12 @@ router.get('/recipe/:recipeId/edit' ,isLoggedIn, (req, res, next) => {
 })
 
 
-router.post('/recipe/:recipeId/edit',isLoggedIn , fileUploader.single('imageUrl'),  (req, res, next) => {
+router.post('/recipe/:recipeId/edit', isLoggedIn, fileUploader.single('imageUrl'),  (req, res, next) => {
     const { recipeId } =  req.params
 
-    const { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body
+    const { title, description, ingredients, cuisine, dishType, difficulty, cookingTime, date } = req.body
 
-    Recipe.findByIdAndUpdate(recipeId, { author, title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path , date }, { new : true })
+    Recipe.findByIdAndUpdate(recipeId, { title, description, ingredients, cuisine, dishType, difficulty, cookingTime, imageUrl: req.file.path , date }, { new : true })
         .then(updatedRecipe => {
             res.redirect(`/recipes`)
         })
