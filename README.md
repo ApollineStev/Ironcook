@@ -2,67 +2,65 @@
 
 ## Description
 
-Ironcook is a website ..
+Ironcook is a Full-stack Web Application that users can sign-up and log-in. User can create some recipes, update and delete his/her own recipes. Also can read other user's recipe and can get random recipe.
 
 ## User Stories
 
-- **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault 
-- **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
-- **homepage** - As a user I want to be able to access the homepage so that I see what the app is about and login and signup
-- **sign up** - As a user I want to sign up on the webpage so that I can see all the events that I could attend
-- **login** - As a user I want to be able to log in on the webpage so that I can get back to my account
-- **logout** - As a user I want to be able to log out from the webpage so that I can make sure no one will access my account
-- **events list** - As a user I want to see all the events available so that I can choose which ones I want to attend
-- **events create** - As a user I want to create an event so that I can invite others to attend
-- **events detail** - As a user I want to see the event details and attendee list of one event so that I can decide if I want to attend 
-- **event attend** - As a user I want to be able to attend to event so that the organizers can count me in
+- **homepage** - As a user I want to be able to access the homepage so that I see what the app is about and login and signup.
+- **sign-up** - As a user I want to sign up on the webpage so that I can create, update and delete my recipes.
+- **login** - As a user I want to be able to log in on the webpage so that I can get back to my account.
+- **logout** - As a user I want to be able to log out from the webpage so that I can make sure no one will access my account.
+- **user profile** - As a user I want to be able to see my recipes so that I can read easily and update or delete recipes.
+- **recipes** - As a user I want to see all the recipes so that I can choose which ones I want to read.
+- **recipe create** - As a user I want to create a recipe so that I can share my recipes to others.
+- **recipe detail** - As a user I want to see the recipe details and descriptions of one recipe so that I can read in detail if I want to cook.
+
 
 ## Backlog
 
-List of other features outside of the MVPs scope
+Search bar:
+- Users can search keywords and the result shows recipes related with that keywords, escpecially recipe title, description and cuisine.
 
-User profile:
-- see my profile
-<!-- - upload my profile picture
-- see other users profile
-- list of events created by the user
-- list events the user is attending -->
+Random recipe:
+- Users can see one random recipe among whole recipes in the database.
 
-Geo Location:
-<!-- - add geolocation to events when creating
-- show event in a map in event detail page
-- show all events in a map in the event list page -->
-
-Homepage
-- ...
+About us:
+- Users can see who made this web app.
 
 
 ## ROUTES:
 
 - GET / 
   - renders the homepage
-- GET /auth/signup
+- GET /signup
   - redirects to / if user logged in
-  - renders the signup form (with flash msg)
-- POST /auth/signup
+  - renders the signup form
+- POST /signup
   - redirects to / if user logged in
   - body:
     - username
     - email
     - password
-- GET /auth/login
+- GET /login
   - redirects to / if user logged in
-  - renders the login form (with flash msg)
-- POST /auth/login
+  - renders the login form
+- POST /login
   - redirects to / if user logged in
   - body:
     - username
     - password
-- POST /auth/logout
+- GET /userProfile
+  - redirects to / if user logged out
+  - renders the user profile page(my recipes list)
+- POST /logout
   - body: (empty)
 
-- GET /events
-  - renders the event list + the create form
+- GET /recipes
+  - renders the recipe list
+- GET /random
+  - renders one random recipe
+
+<!-- WIP -->  
 - POST /events/create 
   - redirects to / if user is anonymous
   - body: 
@@ -86,48 +84,41 @@ User model
 ```
 username: String
 email: String
-hashedPassword: String
+passwordHash: String
 ```
 
 Recipe model
 
 ```
-user: ObjectId<User>
+author: ObjectId<User>
 title: String
 description: String
-ingredients: 
-image: 
-level: 
+ingredients: [String]
+cuisine: String
+dishType: String
+difficulty: String
+cookingTime: Number
+imageUrl: String 
+date: Date
 ``` 
-
-Comment model
-
-```
-```
-
-List model
-
-```
-```
 
 
 ## Links
 
-### Trello
+<!-- ### Trello
 
 [Link to your trello board](https://trello.com) or picture of your physical board
-
+ -->
+ 
 ### Git
 
-The url to your repository and to your deployed project
+[Repository Link](https://github.com/ApollineStev/Ironcook)
 
-[Repository Link](http://github.com)
-
-[Deploy Link](http://heroku.com)
+<!-- Deploy link check! -->
+[Deploy Link](https://splendid-gray-nightingale.cyclic.app/)
 
 ### Slides
 
-The url to your presentation slides
-
+<!-- Slides link update! -->
 [Slides Link](http://slides.com)
 

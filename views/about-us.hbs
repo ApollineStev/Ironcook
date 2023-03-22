@@ -14,19 +14,15 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-uppercase">{{title}}</h5>
+                            <h5 class="card-title text-uppercase">(name)</h5>
                             <p class="card-text">(description)</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">CUISINE      | {{cuisine}}</li>
-                            <li class="list-group-item">Dish Type    | {{dishType}}</li>
-                            <li class="list-group-item">Difficulty   | {{difficulty}}</li>
-                            <li class="list-group-item">Cooking Time | {{cookingTime}}</li>
+                            <li class="list-group-item"><a href="/">to github</a></li>
+                            <li class="list-group-item">email</li>
                         </ul>
-                        <div class="card-body text-center">
-                            <a href="/recipe/{{_id}}" class="btn btn-success">To Github</a>
-                        </div>
-                        <img src="" class="card-img-top img-responsive" alt="image">
+                        
+                        <img src="./images/" class="card-img-top img-responsive" alt="(name) image">
                     </div>
                 </div>
                 {{/each}}
