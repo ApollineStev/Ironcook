@@ -11,7 +11,11 @@
                 <img class="img-thumbnail" style="width: 20rem;" src="{{imageUrl}}">
                 <br>
                 <p class=" mt-3">Recipe by : {{author.username}}</p>
+        {{/with}}
+                <p class=" mt-3">Created on : {{date}}</p>
             </div>
+
+        {{#with recipe}}
             <div class="mx-5 d-flex flex-column justify-content-center" style="font-size: larger;">
                 <p>Cuisine : {{cuisine}}</p>
                 <p>Dish type : {{dishType}}</p>
@@ -21,12 +25,10 @@
                     <br>{{ingredients}}</p>
                     <br>
                     <br>
-                <p class="" style="width: 18rem;">Description :   {{description}}</p>
-
+                <p class="" style="width: 18rem;">Description : {{description}}</p>
 
             </div>
         </div>
-
 
         {{/with}}
 

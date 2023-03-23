@@ -87,7 +87,8 @@ router.get('/recipe/:recipeId', (req, res, next) => {
     Recipe.findById(recipeId)
     .populate('author')
     .then(recipe => {
-
+        let date = recipe.date.toDateString()
+        console.log(date)
         if(req.session.currentUser)
         {
             let user =  req.session.currentUser.username
@@ -95,18 +96,18 @@ router.get('/recipe/:recipeId', (req, res, next) => {
 
             if( user == author )
             {
-                res.render('recipes/detailsUser', { recipe: recipe,
+                res.render('recipes/detailsUser', { date, recipe: recipe,
                 userInSession: req.session.currentUser})
             } 
             else
             {
-                res.render('recipes/detail', { recipe: recipe,
+                res.render('recipes/detail', { date, recipe: recipe,
                 userInSession: req.session.currentUser})
             }
         }
         else
         {
-            res.render('recipes/detail', { recipe: recipe })
+            res.render('recipes/detail', { date, recipe: recipe })
         }
     })
     .catch(error => next(error));
