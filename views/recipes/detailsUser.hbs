@@ -32,18 +32,23 @@
 
         {{/with}}
 
-        <div>
-            <a href="/recipe/{{recipe._id}}/edit">
-                <button add product-id="{{id}}"  type="button" class="btn btn-success w-2">Edit</button>
+        <div class="d-flex text-center  justify-content-center">
+            <div class="mr-5">
+                <a href="/recipe/{{recipe._id}}/edit" class="w-4">
+                <button add product-id="{{id}}"  type="button" class="btn btn-success">Edit</button>
             </a>
-
-            <form action="/recipe/{{recipe._id}}/delete" method="Post">
-                <button type="button" class="btn btn-light">Delet recipe</button>
+            </div>
+            <p class="wx-3">        </p>
+            <div>
+                <form action="/recipe/{{recipe._id}}/delete" method="Post">
+                <button type="button" class="btn btn-light text-success border-success">Delet recipe</button>
             </form>
+            </div>
+
         </div>
 
-        <div>
-            <a href="/recipes">Back to the recipe list</a>
+        <div class="text-center mt-4">
+            <a class="text-success" href="/recipes">Back to the recipe list</a>
         </div>
 
     </div>
