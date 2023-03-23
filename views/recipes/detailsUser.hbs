@@ -32,11 +32,11 @@
 
         <div>
             <a href="/recipe/{{recipe._id}}/edit">
-                <button add product-id="{{id}}">Edit</button>
+                <button add product-id="{{id}}"  type="button" class="btn btn-success w-2">Edit</button>
             </a>
 
             <form action="/recipe/{{recipe._id}}/delete" method="Post">
-                <button>Delet recipe</button>
+                <button type="button" class="btn btn-light">Delet recipe</button>
             </form>
         </div>
 
