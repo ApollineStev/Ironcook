@@ -23,17 +23,20 @@
 
         {{#each recipes}}
           <div class="col">
-            <div class="card">
-              <img src="{{imageUrl}}" class="card-img-top" alt="...">
-              <div class="card-body">
-                  <h5 class="card-title">{{title}}</h5>
-                  <p class="card-text">{{ingredients}}</p>
+            <div class="card" style="width: 20rem;">
+              
+              <div class="card-body text-center" style=" height: 20rem;">
+                  <h4 class="card-title">{{title}}</h4>
+                  <div class="mx-auto" style="width: 180px;">
+                    <img src="{{imageUrl}}" style="width: max-content;" class="img-fluid" alt="...">
+                  </div>
+                  
               </div>
               <ul class="list-group list-group-flush">
-                  <li class="list-group-item">{{cuisine}}</li>
-                  <li class="list-group-item">{{dishType}}</li>
-                  <li class="list-group-item">{{difficulty}}</li>
-                  <li class="list-group-item">{{cookingTime}} minutes</li>
+                  <li class="list-group-item">Cuisine : {{cuisine}}</li>
+                  <li class="list-group-item">dishType : {{dishType}}</li>
+                  <li class="list-group-item">Difficulty : {{difficulty}}</li>
+                  <li class="list-group-item">Time : {{cookingTime}} minutes</li>
               </ul>
               <div class="card-body text-center">
                   <a href="/recipe/{{_id}}" class="btn btn-success">Read more</a>

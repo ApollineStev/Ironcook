@@ -16,11 +16,14 @@
 
                 {{#each recentRecipes}}
                 <div class="col">
-                    <div class="card">
-                        <img src="{{imageUrl}}" class="card-img-top img-responsive" alt="{{title}} image">
-                        <div class="card-body">
-                            <h5 class="card-title text-uppercase">{{title}}</h5>
-                            <p class="card-text">Ingredients | {{ingredients}}</p>
+                    <div class="card"  style="width: 20rem;">
+                        
+                        <div class="card-body text-center" style=" height: 20rem;">
+                            <h4 class="card-title">{{title}}</h4>
+                            <div class="mx-auto" style="width: 180px;">
+                                <img src="{{imageUrl}}" style="width: max-content;" class="img-fluid" alt="...">
+                            </div>
+                            
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">CUISINE      | {{cuisine}}</li>
@@ -37,7 +40,7 @@
 
             </div>
         </div>
-
+<!--
         <div class="mx-5 mt-5">
             <h2> Recipes most liked </h2>
             <hr>
@@ -65,7 +68,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
 
     </div>
 
