@@ -1,90 +1,91 @@
-<br>
-<br>
+<section>
+    <br>
+    <br>
 
-<h1 class=" ml-4 text-center">Editing the recipe</h1>
+    <h1 class=" ml-4 text-center">Editing the recipe</h1>
 
+    <hr>
 
-<hr>
+    <br>
+    <br>
 
-<br>
-<br>
+    <form action="/recipe/{{recipe.id}}/edit" method="POST" enctype="multipart/form-data">
+        <div class="mx-5 mb-3">
+            <label for="formGroupExampleInput" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="formGroupExampleInput" value="{{recipe.title}}">
+        </div>
 
-<form action="/recipe/{{recipe.id}}/edit" method="POST" enctype="multipart/form-data">
-    <div class="mx-5 mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Title</label>
-                    <input type="text" name="title" class="form-control" id="formGroupExampleInput" value="{{recipe.title}}">
-                </div>
-
-                <div class="mx-5 mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Description</label>
-                    <textarea name="description" rows="10" class="form-control" id="formGroupExampleInput">{{recipe.description}}</textarea>
-                </div>
+        <div class="mx-5 mb-3">
+            <label for="formGroupExampleInput" class="form-label">Description</label>
+            <textarea name="description" rows="10" class="form-control" id="formGroupExampleInput">{{recipe.description}}</textarea>
+        </div>
                 
-                <div class="mx-5 mb-3"><!-- for each??? -->
-                    <label for="formGroupExampleInput" class="form-label">Ingredients</label>
-                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label" <!--value="{{recipe.ingredients}}"-->>
-                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label" >
-                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
-                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
-                    <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
-                    <!-- possible to add -->
-                </div>
+        <div class="mx-5 mb-3"><!-- for each??? -->
+            <label for="formGroupExampleInput" class="form-label">Ingredients</label>
+            <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label" <!--value="{{recipe.ingredients}}"-->>
+            <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label" >
+            <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+            <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+            <input type="text" name="ingredients" for="formGroupExampleInput" class="form-label">
+            <!-- possible to add -->
+        </div>
 
-                <div class="mx-5 mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Cuisine
-                        <input type="text" name="cuisine" class="form-control" id="formGroupExampleInput" value="{{recipe.cuisine}}">
-                    </label>
+        <div class="mx-5 mb-3">
+            <label for="formGroupExampleInput" class="form-label">Cuisine
+                <input type="text" name="cuisine" class="form-control" id="formGroupExampleInput" value="{{recipe.cuisine}}">
+            </label>
 
-                    <label for="formGroupExampleInput" class="form-label"> Dish type
-                        <select name="dishType" class="form-select form-select-sm" aria-label="Small select" value="{{recipe.dishType}}">
-                            <option selected="">Select dish type</option>
-                            <option value="breakfast">Breakfast</option>
-                            <option value="starter">Starter</option>
-                            <option value="soup">Soup</option>
-                            <option value="tapas">Tapas</option>
-                            <option value="main">Main</option>
-                            <option value="dessert">Dessert</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </label>
-                    
-                    <label for="formGroupExampleInput" class="form-label"> Difficulty
-                        <select name="difficulty" class="form-select form-select-sm" aria-label="Small select">
-                            <option selected="">Select difficulty</option>
-                            <option value="easy">Easy</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="difficult">Difficult</option>
-                        </select>
-                    </label>
-                    
-                    <label for="formGroupExampleInput" class="form-label"> Cooking time
-                        <input type="number" name="cookingTime" min="1" max="600" placeholder="min" class="form-control" id="formGroupExampleInput">
-                    </label>
+            <label for="formGroupExampleInput" class="form-label"> Dish type
+                <select name="dishType" class="form-select form-select-sm" aria-label="Small select" value="{{recipe.dishType}}">
+                    <option selected="">Select dish type</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="starter">Starter</option>
+                    <option value="soup">Soup</option>
+                    <option value="tapas">Tapas</option>
+                    <option value="main">Main</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="other">Other</option>
+                </select>
+            </label>
+            
+            <label for="formGroupExampleInput" class="form-label"> Difficulty
+                <select name="difficulty" class="form-select form-select-sm" aria-label="Small select">
+                    <option selected="">Select difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="difficult">Difficult</option>
+                </select>
+            </label>
+            
+            <label for="formGroupExampleInput" class="form-label"> Cooking time
+                <input type="number" name="cookingTime" min="1" max="600" placeholder="min" class="form-control" id="formGroupExampleInput">
+            </label>
 
-                    <label for="formGroupExampleInput" class="form-label"> Image
-                        <input type="file" name="imageUrl" class="form-control" id="formGroupExampleInput" value="{{recipe.id}}">
-                    </label>
+            <label for="formGroupExampleInput" class="form-label"> Image
+                <input type="file" name="imageUrl" class="form-control" id="formGroupExampleInput" value="{{recipe.id}}">
+            </label>
 
-                </div>
+        </div>
 
-                <div class="d-flex justify-content-center mt-4">
-                    <button class="btn btn-success">Save Changes</button>
-                    
-                        <script>
+        <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-success mb-5">Save Changes</button>
+            
+                <script>
 
-                            window.onload = () => {
-                                document.querySelector("form").onkeypress = (event) => {
+                    window.onload = () => {
+                        document.querySelector("form").onkeypress = (event) => {
 
-                                    // Disable Return on Inputs
-                                    if (event.key == "Enter") {
-                                        event.preventDefault()
-                                    }
-                                }
+                            // Disable Return on Inputs
+                            if (event.key == "Enter") {
+                                event.preventDefault()
                             }
+                        }
+                    }
 
-                      </script>
-                    
-                </div>
+                </script>
+            
+        </div>
                 
+    </form>
 
-</form>
+</section>

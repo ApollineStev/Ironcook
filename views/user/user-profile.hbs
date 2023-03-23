@@ -13,24 +13,22 @@
         <div class="d-flex justify-content-between text-center">
           <h2 > My Recipes </h2>
           <a href="/recipe-create" class="btn btn-success w-25 d-flex align-items-center justify-content-center"> Create a new recipe </a>
-          {{!-- button right side! --}}
         </div>
         <hr>
       </div>
- 
+
       <div class="container mt-5">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
         {{#each recipes}}
           <div class="col">
-            <div class="card" style="width: 20rem;">
+            <div class="card">
               
-              <div class="card-body text-center" style=" height: 20rem;">
-                  <h4 class="card-title">{{title}}</h4>
-                  <div class="mx-auto" style="width: 180px;">
-                    <img src="{{imageUrl}}" style="width: max-content;" class="img-fluid" alt="...">
+              <div class="card-body text-center">
+                  <h4 class="card-title text-uppercase">{{title}}</h4>
+                  <div>
+                    <img src="{{imageUrl}}" style="height: 20rem; object-fit: cover;" class="img-fluid rounded" alt="...">
                   </div>
-                  
               </div>
               <ul class="list-group list-group-flush">
                   <li class="list-group-item">Cuisine : {{cuisine}}</li>

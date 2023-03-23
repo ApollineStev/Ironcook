@@ -1,9 +1,12 @@
-<section class="bg-image">
+<section class="bg-image"
+    style="background-image: url('./images/kitchen-img.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;">
 
     <div class="album py-5">
 
         <div class="mx-5 text-uppercase">
-            <h2> Recipe list </h2>
+            <h2 class="fw-bold"> Recipe list </h2>
             <hr>
         </div>
 
@@ -12,12 +15,12 @@
 
                 {{#each recipe}}
                 <div class="col">
-                    <div class="card" style="width: 20rem;">
+                    <div class="card">
                     
-                    <div class="card-body text-center" style=" height: 20rem;">
-                        <h4 class="card-title">{{title}}</h4>
-                        <div class="mx-auto" style="width: 180px;">
-                            <img src="{{imageUrl}}" style="width: max-content;" class="img-fluid" alt="...">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-uppercase">{{title}}</h4>
+                        <div>
+                            <img src="{{imageUrl}}" style="height: 20rem; object-fit: cover;" class="img-fluid rounded" alt="...">
                         </div>
                         
                     </div>

@@ -12,7 +12,7 @@
                 <br>
                 <p class=" mt-3">Recipe by : {{author.username}}</p>
         {{/with}}
-                <p class=" mt-3">Created on : {{date}}</p>
+                <p class=" mt-3">Posted on : {{date}}</p>
             </div>
         {{#with recipe}}
             <div class="mx-5 d-flex flex-column justify-content-center" style="font-size: larger;">
@@ -35,13 +35,13 @@
         <div class="d-flex text-center  justify-content-center">
             <div class="mr-5">
                 <a href="/recipe/{{recipe._id}}/edit" class="w-4">
-                <button add product-id="{{id}}"  type="button" class="btn btn-success">Edit</button>
+                <button add product-id="{{id}}"  type="button" class="btn btn-success me-2">Edit</button>
             </a>
             </div>
             <p class="wx-3">        </p>
             <div>
                 <form action="/recipe/{{recipe._id}}/delete" method="Post">
-                <button type="button" class="btn btn-light text-success border-success">Delet recipe</button>
+                <button type="button" class="btn btn-light text-success border-success">Delete recipe</button>
             </form>
             </div>
 

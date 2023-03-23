@@ -3,14 +3,13 @@
     background-size: cover;
     background-repeat: no-repeat;">
 
-    <div class="album py-5 bg-light">
+    {{#if recipes}}
+    <div class="album py-5">
 
         <div class="mx-5 text-uppercase">
-            <h2> Recipe Search Result </h2>
+            <h2 class="fw-bold"> Recipe Search Result </h2>
             <hr>
         </div>
-
-        {{#if recipes}}
 
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -18,10 +17,11 @@
                 {{#each recipes}}
                 <div class="col">
                     <div class="card">
-                        <img src="{{imageUrl}}" class="card-img-top img-responsive" alt="{{title}}">
-                        <div class="card-body">
-                            <h5 class="card-title text-uppercase">{{title}}</h5>
-                            <p class="card-text">Ingredients | {{ingredients}}</p>
+                        <div class="card-body text-center">
+                            <h4 class="card-title text-uppercase">{{title}}</h4>
+                            <div>
+                                <img src="{{imageUrl}}" style="height: 20rem; object-fit: cover;" class="img-fluid rounded" alt="...">
+                            </div>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">CUISINE      | {{cuisine}}</li>
@@ -34,18 +34,19 @@
                         </div>
                     </div>
                 </div>
-                {{/each}}
 
             </div>
         </div>
-
-        {{else}}
-
-        <div class="mx-5">
-            <h4> There is no recipe about {{wordToSearch}}. </h4>
-        </div>
-
-        {{/if}}
     </div>
+    {{/each}}
+
+    {{else}}
+
+    <div class="mx-5 vh-100 d-flex my-auto align-items-center">
+        <h4 class="text-center text-white bg-success mx-auto fw-bold"> There is no recipe about "{{wordToSearch}}". </h4>
+    </div>
+
+    {{/if}}
+    
 </section>
 
