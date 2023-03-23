@@ -35,7 +35,8 @@ router.get('/random', (req, res, next) => {
         Recipe.findOne().skip(random)
         .populate('author')
         .then((randomRecipe) => {
-            res.render("recipes/random", {randomRecipe,
+            let date = randomRecipe.date.toDateString()
+            res.render("recipes/random", {date, randomRecipe,
             userInSession: req.session.currentUser})
         });
     })
