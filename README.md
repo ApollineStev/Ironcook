@@ -129,20 +129,13 @@ date: Date
 
 ## Links
 
-<!-- ### Trello
-
-[Link to your trello board](https://trello.com) or picture of your physical board
- -->
- 
 ### Git
 
 [Repository Link](https://github.com/ApollineStev/Ironcook)
 
-<!-- Deploy link check! -->
 [Deploy Link](https://splendid-gray-nightingale.cyclic.app/)
 
 ### Slides
 
-<!-- Slides link update! -->
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1miCXEkMtElB4uAF_x70h2Hl07aOaXG1x8bIf_Xe7IzY/edit#slide=id.g1dfac329093_0_45)
 
