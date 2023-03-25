@@ -11,8 +11,10 @@
                 <img class="img-thumbnail" style="width: 20rem;" src="{{imageUrl}}">
                 <br>
                 <p class=" mt-3">Recipe by : {{author.username}}</p>
-                <p class=" mt-3">On : {{date}}</p>
+        {{/with}}
+                <p class=" mt-3">Posted On : {{date}}</p>
             </div>
+        {{#with recipe}}
             <div class="mx-5 d-flex flex-column justify-content-center" style="font-size: larger;">
                 <p>Cuisine : {{cuisine}}</p>
                 <p>Dish type : {{dishType}}</p>
@@ -31,7 +33,7 @@
         {{/with}}
 
         <div class="d-flex text-center  justify-content-center">
-            <div class="mr-5">
+            <div class="mr-5 me-2">
                 <a href="/recipe/{{recipe._id}}/edit" class="w-4">
                 <button add product-id="{{id}}"  type="button" class="btn btn-success">Edit</button>
             </a>
@@ -39,7 +41,7 @@
             <!-- I delete the type="button" and it work =) -->
             <div>
                 <form action="/recipe/{{recipe._id}}/delete" method="POST">
-                  <button class="btn btn-light text-success border-success">Delet recipe</button>
+                    <button class="btn btn-light text-success border-success">Delete recipe</button>
                 </form>
             </div>
 
